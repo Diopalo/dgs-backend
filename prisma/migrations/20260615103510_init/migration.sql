@@ -1,0 +1,56 @@
+-- CreateTable
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Projet" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nom" TEXT NOT NULL,
+    "description" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "Projet_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Site" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "url" TEXT NOT NULL,
+    "nom" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "projetId" INTEGER NOT NULL,
+    CONSTRAINT "Site_projetId_fkey" FOREIGN KEY ("projetId") REFERENCES "Projet" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Keyword" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "motCle" TEXT NOT NULL,
+    "urlCible" TEXT,
+    "volumeRecherche" INTEGER,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "siteId" INTEGER NOT NULL,
+    CONSTRAINT "Keyword_siteId_fkey" FOREIGN KEY ("siteId") REFERENCES "Site" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "AuditResult" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "score" INTEGER NOT NULL,
+    "details" TEXT,
+    "crawledAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "siteId" INTEGER NOT NULL,
+    CONSTRAINT "AuditResult_siteId_fkey" FOREIGN KEY ("siteId") REFERENCES "Site" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
