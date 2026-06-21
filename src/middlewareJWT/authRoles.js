@@ -1,4 +1,4 @@
-export const autorisationRole = (...rolesAutorises) => {
+const autorisationRole = (...rolesAutorises) => {
 
   return (req, res, next) => {
 
@@ -20,3 +20,4 @@ export const autorisationRole = (...rolesAutorises) => {
     next();
   };
 };
+module.exports = autorisationRole;
