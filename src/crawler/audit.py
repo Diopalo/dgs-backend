@@ -1,216 +1,383 @@
+#!/usr/bin/env python3
 """
-Script d'audit technique SEO — RG-01, RG-02 (version multi-pages, J4)
-Usage : python audit.py <url>
-Sortie : un objet JSON sur stdout.
+DGS SEO Bot — crawler BFS production-grade (v2)
 
-Crawle la page racine + jusqu'à MAX_PAGES_TO_ANALYZE-1 pages internes
-supplementaires pour calculer une vitesse moyenne et un score representatifs
-de l'ensemble du site, tout en respectant robots.txt et en limitant le
-nombre de requêtes (RG-01).
+Usage:
+    python audit.py <site_url> [--max-pages N] [--delay-ms N] [--max-workers N]
+
+Sortie: JSON structuré sur stdout
+  {
+    "pages":       [...],
+    "dead_links":  [...],
+    "crawl_stats": { "total_pages": N, "crawl_duration_ms": N, "pages_with_errors": N }
+  }
 """
 
 import sys
 import json
 import time
 import asyncio
-from urllib.parse import urljoin, urlparse
+import argparse
+from collections import deque
+from urllib.parse import urljoin, urlparse, urldefrag
 from urllib.robotparser import RobotFileParser
 
 import aiohttp
 from bs4 import BeautifulSoup
 
-MAX_PAGES_TO_ANALYZE = 5      # page racine incluse
-MAX_LINKS_TO_CHECK = 20       # liens verifies pour les codes HTTP (morts inclus)
-TIMEOUT_SECONDS = 10
-MAX_CONCURRENT_REQUESTS = 5
-USER_AGENT = "DGS-SEO-Auditor/1.0"
+
+# ── Constantes (toutes nommées, aucune valeur magique en dur) ────────────────
+
+USER_AGENT           = "DGS-SEO-Bot/1.0"
+DEFAULT_MAX_PAGES    = 500
+DEFAULT_DELAY_MS     = 500
+DEFAULT_MAX_WORKERS  = 5
+REQUEST_TIMEOUT_S    = 10   # timeout de connexion + lecture (hors DNS)
+# Cap sur les vérifications de liens morts pour éviter des crawls interminables
+MAX_DEAD_LINK_CHECK  = 200
 
 
-async def is_allowed_by_robots(session, url):
-    """RG-01 : verifie que le crawl est autorise par robots.txt."""
+# ── Utilitaires d'URL ────────────────────────────────────────────────────────
+
+def normalize_url(url: str) -> str:
+    """Supprime les fragments (#section) et normalise le chemin pour dédoublonner."""
+    url, _ = urldefrag(url)
     parsed = urlparse(url)
+    # Supprime la barre finale sauf sur la racine ("/")
+    path = parsed.path.rstrip("/") or "/"
+    return parsed._replace(path=path, fragment="").geturl()
+
+
+def is_internal(url: str, base_netloc: str) -> bool:
+    """Considère comme interne tout lien partageant le même domaine racine.
+    Exemple : 'en.wikipedia.org' est interne à 'wikipedia.org'.
+    """
+    link_netloc = urlparse(url).netloc
+    return link_netloc == base_netloc or link_netloc.endswith("." + base_netloc)
+
+
+def is_http(url: str) -> bool:
+    return urlparse(url).scheme in ("http", "https")
+
+
+# ── robots.txt (RG-01) ───────────────────────────────────────────────────────
+
+async def load_robots(session: aiohttp.ClientSession, base_url: str) -> RobotFileParser:
+    """Charge et parse robots.txt du domaine cible.
+    Si inaccessible ou absent (4xx/5xx), autorise tout le crawl (standard RFC).
+    Note : on ne peut pas utiliser rp.read() car il est synchrone + bloquant.
+    On gère manuellement allow_all pour reproduire le comportement de read().
+    """
+    parsed     = urlparse(base_url)
     robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
-    rp = RobotFileParser()
+    rp         = RobotFileParser()
+    rp.set_url(robots_url)
     try:
-        async with session.get(robots_url, timeout=TIMEOUT_SECONDS) as response:
-            if response.status == 200:
-                content = await response.text()
-                rp.parse(content.splitlines())
-                return rp.can_fetch(USER_AGENT, url)
+        async with session.get(
+            robots_url,
+            timeout=aiohttp.ClientTimeout(sock_connect=REQUEST_TIMEOUT_S, sock_read=REQUEST_TIMEOUT_S)
+        ) as resp:
+            if resp.status == 200:
+                text = await resp.text(errors="replace")
+                rp.parse(text.splitlines())
+            else:
+                # 404 / 5xx → aucune restriction, comme le ferait rp.read() en cas de 4xx
+                rp.allow_all = True
     except Exception:
-        pass
-    return True  # robots.txt inaccessible -> on autorise par defaut
+        # Timeout ou erreur réseau → on autorise par défaut
+        rp.allow_all = True
+    return rp
 
 
-async def fetch_page(session, url):
+# ── Récupération d'une page ──────────────────────────────────────────────────
+
+async def fetch_page(
+    session: aiohttp.ClientSession,
+    url: str
+) -> tuple:
+    """Retourne (status: int|None, elapsed_ms: int, final_url: str, html: str|None).
+    Les redirections 301/302 sont suivies automatiquement (allow_redirects=True).
+    """
     start = time.monotonic()
     try:
-        async with session.get(url, timeout=TIMEOUT_SECONDS, allow_redirects=True) as response:
+        async with session.get(
+            url,
+            timeout=aiohttp.ClientTimeout(sock_connect=REQUEST_TIMEOUT_S, sock_read=REQUEST_TIMEOUT_S),
+            allow_redirects=True
+        ) as resp:
             elapsed_ms = int((time.monotonic() - start) * 1000)
-            text = await response.text()
-            return response.status, elapsed_ms, text
+            html       = await resp.text(errors="replace")
+            return resp.status, elapsed_ms, str(resp.url), html
     except Exception:
         elapsed_ms = int((time.monotonic() - start) * 1000)
-        return None, elapsed_ms, None
+        return None, elapsed_ms, url, None
 
 
-async def check_link_status(session, semaphore, url):
-    async with semaphore:
-        try:
-            async with session.head(url, timeout=TIMEOUT_SECONDS, allow_redirects=True) as response:
-                return url, response.status
-        except Exception:
-            try:
-                async with session.get(url, timeout=TIMEOUT_SECONDS, allow_redirects=True) as response:
-                    return url, response.status
-            except Exception:
-                return url, None
+# ── Analyse SEO d'une page ───────────────────────────────────────────────────
 
-
-def analyser_balises(html, base_url):
+def analyze_page(
+    url: str,
+    status: int,
+    elapsed_ms: int,
+    html: str,
+    base_netloc: str
+) -> dict:
+    """Extrait toutes les métriques SEO d'une page HTML et retourne un dict structuré."""
     soup = BeautifulSoup(html, "html.parser")
 
-    title_tag = soup.find("title")
-    meta_description = soup.find("meta", attrs={"name": "description"})
-    h1_tags = soup.find_all("h1")
+    # ── Balises SEO fondamentales ────────────────────────────────────────────
+    title_tag  = soup.find("title")
+    title      = title_tag.get_text(strip=True) if title_tag else None
 
-    balises_manquantes = {}
-    if not title_tag or not title_tag.get_text(strip=True):
-        balises_manquantes["title"] = "manquant"
-    if not meta_description or not (meta_description.get("content") or "").strip():
-        balises_manquantes["meta_description"] = "manquant"
-    if len(h1_tags) == 0:
-        balises_manquantes["h1"] = "manquant"
-    elif len(h1_tags) > 1:
-        balises_manquantes["h1"] = f"{len(h1_tags)} balises H1 detectees (1 attendue)"
+    md_tag           = soup.find("meta", attrs={"name": "description"})
+    meta_description = (
+        (md_tag.get("content") or "").strip() or None
+    ) if md_tag else None
 
-    structure_headings = {f"h{level}": len(soup.find_all(f"h{level}")) for level in range(1, 7)}
+    h1_tags  = soup.find_all("h1")
+    h1_count = len(h1_tags)
 
-    liens = set()
+    # Structure des headings h1 à h6
+    headings = {f"h{i}": len(soup.find_all(f"h{i}")) for i in range(1, 7)}
+
+    # ── Balises techniques ────────────────────────────────────────────────────
+    canonical_tag = soup.find("link", attrs={"rel": "canonical"})
+    canonical     = canonical_tag.get("href") if canonical_tag else None
+
+    mr_tag              = soup.find("meta", attrs={"name": "robots"})
+    meta_robots_content = (mr_tag.get("content") or "").lower() if mr_tag else ""
+    noindex             = "noindex"  in meta_robots_content
+    nofollow            = "nofollow" in meta_robots_content
+
+    # ── Extraction des liens ──────────────────────────────────────────────────
+    internal_links: set = set()
+    external_links: set = set()
+
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
-        if href.startswith(("mailto:", "tel:", "#")):
+        if not href or href.startswith(("mailto:", "tel:", "javascript:", "#")):
             continue
-        absolute = urljoin(base_url, href)
-        if urlparse(absolute).scheme in ("http", "https"):
-            liens.add(absolute)
+        absolute = normalize_url(urljoin(url, href))
+        if not is_http(absolute):
+            continue
+        if is_internal(absolute, base_netloc):
+            internal_links.add(absolute)
+        else:
+            external_links.add(absolute)
 
-    return balises_manquantes, structure_headings, list(liens)
+    # ── Problèmes SEO détectés ────────────────────────────────────────────────
+    issues: dict = {}
+    if not title:
+        issues["title"] = "manquant"
+    if not meta_description:
+        issues["meta_description"] = "manquant"
+    if h1_count == 0:
+        issues["h1"] = "absent"
+    elif h1_count > 1:
+        issues["h1"] = f"{h1_count} balises H1 détectées (1 attendue)"
+
+    return {
+        "url":              url,
+        "status_code":      status,
+        "elapsed_ms":       elapsed_ms,
+        "title":            title,
+        "meta_description": meta_description,
+        "h1_count":         h1_count,
+        "headings":         headings,
+        "canonical":        canonical,
+        "noindex":          noindex,
+        "nofollow":         nofollow,
+        "issues":           issues,
+        "internal_links":   sorted(internal_links),
+        "external_links":   sorted(external_links),
+    }
 
 
-def calculer_score(balises_manquantes_resume, nb_pages, vitesse_ms_moyenne, nb_liens_morts):
+# ── Vérification des liens morts ─────────────────────────────────────────────
+
+async def check_link(
+    session: aiohttp.ClientSession,
+    semaphore: asyncio.Semaphore,
+    url: str
+) -> dict:
+    """HEAD en premier (plus léger), fallback GET si HEAD non supporté.
+    Retourne {"url": ..., "status": int|None}.
     """
-    RG-02 : score pondere, calcule sur des metriques agregees multi-pages.
-    Ponderation :
-      - title manquant     : -15 points * (proportion de pages concernees)
-      - meta_description    : -10 points * (proportion de pages concernees)
-      - h1 manquant/duplique: -10 points * (proportion de pages concernees)
-      - vitesse moyenne      : -20 si > 3000ms, -10 si > 1000ms
-      - liens morts          : -5 points par lien mort, plafonne à -30
-    """
-    score = 100.0
-
-    if nb_pages > 0:
-        score -= 15 * (balises_manquantes_resume.get("title", 0) / nb_pages)
-        score -= 10 * (balises_manquantes_resume.get("meta_description", 0) / nb_pages)
-        score -= 10 * (balises_manquantes_resume.get("h1", 0) / nb_pages)
-
-    if vitesse_ms_moyenne > 3000:
-        score -= 20
-    elif vitesse_ms_moyenne > 1000:
-        score -= 10
-
-    score -= min(nb_liens_morts * 5, 30)
-
-    return max(0, min(100, round(score)))
-
-
-async def run_audit(url):
-    async with aiohttp.ClientSession(headers={"User-Agent": USER_AGENT}) as session:
-        if not await is_allowed_by_robots(session, url):
-            return {"statut": "echec", "erreur": "Crawl interdit par robots.txt"}
-
-        root_domain = urlparse(url).netloc
-
-        # 1. Page racine
-        status, vitesse_ms, html = await fetch_page(session, url)
-        if status is None or html is None:
-            return {"statut": "echec", "erreur": f"Impossible d'acceder à {url}"}
-
-        balises, structure, liens = analyser_balises(html, url)
-        pages_analysees = [{
-            "url": url,
-            "vitesse_ms": vitesse_ms,
-            "balises_manquantes": balises,
-            "structure_headings": structure,
-        }]
-
-        liens_internes = [l for l in liens if urlparse(l).netloc == root_domain and l != url]
-        liens_externes = [l for l in liens if urlparse(l).netloc != root_domain]
-
-        # 2. Pages internes supplementaires à analyser en profondeur
-        pages_a_analyser = liens_internes[:MAX_PAGES_TO_ANALYZE - 1]
-
-        for page_url in pages_a_analyser:
-            if not await is_allowed_by_robots(session, page_url):
+    async with semaphore:
+        timeout = aiohttp.ClientTimeout(sock_connect=REQUEST_TIMEOUT_S, sock_read=REQUEST_TIMEOUT_S)
+        for method in ("head", "get"):
+            try:
+                async with getattr(session, method)(
+                    url, timeout=timeout, allow_redirects=True
+                ) as resp:
+                    return {"url": url, "status": resp.status}
+            except Exception:
                 continue
-            p_status, p_vitesse, p_html = await fetch_page(session, page_url)
-            if p_status is not None and p_html is not None:
-                p_balises, p_structure, p_liens = analyser_balises(p_html, page_url)
-                pages_analysees.append({
-                    "url": page_url,
-                    "vitesse_ms": p_vitesse,
-                    "balises_manquantes": p_balises,
-                    "structure_headings": p_structure,
+        return {"url": url, "status": None}
+
+
+async def check_dead_links(
+    session: aiohttp.ClientSession,
+    urls: set,
+    max_workers: int
+) -> list:
+    """Vérifie en parallèle (semaphore) le statut de chaque URL.
+    Considère mort : status None (timeout/erreur) ou >= 400.
+    """
+    if not urls:
+        return []
+    semaphore = asyncio.Semaphore(max_workers)
+    results   = await asyncio.gather(
+        *[check_link(session, semaphore, u) for u in urls]
+    )
+    return [r for r in results if r["status"] is None or r["status"] >= 400]
+
+
+# ── BFS crawler ───────────────────────────────────────────────────────────────
+
+async def run_crawl(
+    site_url: str,
+    max_pages: int,
+    delay_ms: int,
+    max_workers: int
+) -> dict:
+    """Crawl BFS (Breadth-First Search) du site.
+
+    Garanties :
+    - Chaque URL n'est visitée qu'une seule fois (ensemble visited)
+    - robots.txt est respecté avant chaque requête (RG-01)
+    - Délai configurable entre chaque requête (politesse)
+    - Redirections suivies automatiquement
+    - Liens morts vérifiés en parallèle après le crawl
+    """
+    crawl_start         = time.monotonic()
+    base_netloc         = urlparse(site_url).netloc
+    visited:       set  = set()
+    crawled_urls:  set  = set()
+    queue               = deque([normalize_url(site_url)])
+    pages:         list = []
+    all_outgoing:  set  = set()
+
+    # ThreadedResolver utilise le DNS système (socket.getaddrinfo) via un thread pool,
+    # ce qui contourne les problèmes du resolver DNS asynchrone natif d'aiohttp.
+    resolver  = aiohttp.ThreadedResolver()
+    connector = aiohttp.TCPConnector(limit=max_workers, ssl=False, resolver=resolver)
+    # On exclut "br" (Brotli) : la version système d'aiohttp ne le décode pas.
+    headers   = {"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"}
+
+    async with aiohttp.ClientSession(connector=connector, headers=headers) as session:
+
+        # ── 1. Chargement de robots.txt ───────────────────────────────────
+        robots = await load_robots(session, site_url)
+
+        # ── 2. BFS ────────────────────────────────────────────────────────
+        while queue and len(pages) < max_pages:
+            url = queue.popleft()
+
+            if url in visited:
+                continue
+            visited.add(url)
+
+            # Vérification robots.txt avant chaque requête (RG-01)
+            if not robots.can_fetch(USER_AGENT, url):
+                continue
+
+            # Délai de politesse (sauf pour la toute première page)
+            if pages:
+                await asyncio.sleep(delay_ms / 1000)
+
+            status, elapsed_ms, final_url, html = await fetch_page(session, url)
+
+            # Page inaccessible : enregistrée comme erreur, BFS continue
+            if html is None:
+                pages.append({
+                    "url":         url,
+                    "status_code": status,
+                    "elapsed_ms":  elapsed_ms,
+                    "error":       True,
+                    "issues":      {"fetch": "impossible d'accéder à la page"},
                 })
-                liens_internes.extend([l for l in p_liens if urlparse(l).netloc == root_domain])
-                liens_externes.extend([l for l in p_liens if urlparse(l).netloc != root_domain])
+                continue
 
-        # 3. Verification des liens morts (internes + externes, dedoublonnes)
-        tous_liens = list(dict.fromkeys(liens_internes + liens_externes))
-        liens_a_verifier = tous_liens[:MAX_LINKS_TO_CHECK]
+            page_data = analyze_page(final_url, status, elapsed_ms, html, base_netloc)
+            pages.append(page_data)
+            crawled_urls.add(final_url)
 
-        semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
-        resultats_liens = await asyncio.gather(
-            *[check_link_status(session, semaphore, lien) for lien in liens_a_verifier]
-        )
-        liens_morts = [
-            {"url": lien, "code": code}
-            for lien, code in resultats_liens
-            if code is None or code >= 400
-        ]
+            # Enqueue les liens internes non encore visités
+            for link in page_data["internal_links"]:
+                if link not in visited:
+                    queue.append(link)
 
-        # 4. Agregation des metriques multi-pages
-        nb_pages = len(pages_analysees)
-        vitesse_ms_moyenne = round(sum(p["vitesse_ms"] for p in pages_analysees) / nb_pages)
+            # Collecte globale pour la vérification des liens morts
+            all_outgoing.update(page_data["internal_links"])
+            all_outgoing.update(page_data["external_links"])
 
-        balises_manquantes_resume = {"title": 0, "meta_description": 0, "h1": 0}
-        for p in pages_analysees:
-            for cle in balises_manquantes_resume:
-                if cle in p["balises_manquantes"]:
-                    balises_manquantes_resume[cle] += 1
+        # ── 3. Vérification des liens morts ──────────────────────────────
+        # Exclure les URLs déjà crawlées (statut connu) et cap à MAX_DEAD_LINK_CHECK
+        links_to_check = list(all_outgoing - crawled_urls)[:MAX_DEAD_LINK_CHECK]
+        dead_links     = await check_dead_links(session, set(links_to_check), max_workers)
 
-        score = calculer_score(balises_manquantes_resume, nb_pages, vitesse_ms_moyenne, len(liens_morts))
+    crawl_duration_ms = int((time.monotonic() - crawl_start) * 1000)
+    pages_with_errors = sum(
+        1 for p in pages
+        if p.get("error") or (p.get("status_code") and p["status_code"] >= 400)
+    )
 
-        return {
-            "statut": "termine",
-            "score": score,
-            "vitesse_ms_moyenne": vitesse_ms_moyenne,
-            "pages_analysees": pages_analysees,
-            "balises_manquantes_resume": balises_manquantes_resume,
-            "liens_analyses": len(liens_a_verifier),
-            "liens_morts": liens_morts,
-        }
+    return {
+        "pages":      pages,
+        "dead_links": dead_links,
+        "crawl_stats": {
+            "total_pages":       len(pages),
+            "crawl_duration_ms": crawl_duration_ms,
+            "pages_with_errors": pages_with_errors,
+        },
+    }
+
+
+# ── Point d'entrée ────────────────────────────────────────────────────────────
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="DGS SEO Bot — analyse technique SEO par crawl BFS"
+    )
+    parser.add_argument(
+        "site_url",
+        help="URL racine du site à crawler"
+    )
+    parser.add_argument(
+        "--max-pages",
+        type=int,
+        default=DEFAULT_MAX_PAGES,
+        help=f"Nombre max de pages à crawler (défaut : {DEFAULT_MAX_PAGES})"
+    )
+    parser.add_argument(
+        "--delay-ms",
+        type=int,
+        default=DEFAULT_DELAY_MS,
+        help=f"Délai entre requêtes en ms (défaut : {DEFAULT_DELAY_MS})"
+    )
+    parser.add_argument(
+        "--max-workers",
+        type=int,
+        default=DEFAULT_MAX_WORKERS,
+        help=f"Workers parallèles pour la vérif. des liens morts (défaut : {DEFAULT_MAX_WORKERS})"
+    )
+    return parser.parse_args()
 
 
 def main():
-    if len(sys.argv) < 2:
-        print(json.dumps({"statut": "echec", "erreur": "URL manquante en argument"}))
+    args = parse_args()
+    try:
+        result = asyncio.run(run_crawl(
+            site_url    = args.site_url,
+            max_pages   = args.max_pages,
+            delay_ms    = args.delay_ms,
+            max_workers = args.max_workers,
+        ))
+        print(json.dumps(result, ensure_ascii=False))
+    except Exception as exc:
+        print(json.dumps({"error": str(exc)}, ensure_ascii=False))
         sys.exit(1)
-
-    url = sys.argv[1]
-    resultat = asyncio.run(run_audit(url))
-    print(json.dumps(resultat, ensure_ascii=False))
 
 
 if __name__ == "__main__":

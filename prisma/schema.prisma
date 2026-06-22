@@ -12,6 +12,12 @@ enum Role {
   ANALYSTE
   REDACTEUR
 }
+
+enum Priorite {
+  HAUTE
+  MOYENNE
+  BASSE
+}
 model User {
   id        Int      @id @default(autoincrement())
   name      String
@@ -52,23 +58,28 @@ model Site {
 }
 
 model Keyword {
-  id               Int      @id @default(autoincrement())
-  motCle           String
-  urlCible         String?
-  volumeRecherche  Int?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id            Int       @id @default(autoincrement())
+  expression    String
+  categorie     String?
+  volume_estime Int?
+  priorite      Priorite  @default(MOYENNE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  siteId           Int
-  site             Site     @relation(fields: [siteId], references: [id])
+  siteId        Int
+  site          Site      @relation(fields: [siteId], references: [id])
 }
 
 model AuditResult {
-  id        Int      @id @default(autoincrement())
-  score     Int
-  details   String?
-  crawledAt DateTime @default(now())
+  id                 Int      @id @default(autoincrement())
+  score              Int
+  statut             String   @default("en_cours")
+  vitesse_ms         Int?
+  balises_manquantes String?
+  liens_morts        String?
+  details            String?
+  crawledAt          DateTime @default(now())
 
-  siteId    Int
-  site      Site     @relation(fields: [siteId], references: [id])
+  siteId             Int
+  site               Site     @relation(fields: [siteId], references: [id])
 }

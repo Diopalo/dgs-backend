@@ -1,5 +1,5 @@
 const prisma = require("../configuration/prismaClient");
-const { runAuditWithRetry } = require('../services/auditRunner');
+const { runAudit } = require('../services/auditRunner');
 
 // Créer un site
 const createSite = async (req, res) => {
@@ -244,34 +244,28 @@ async function launchAudit(req, res) {
             });
         }
 
-        const resultat = await runAuditWithRetry(site.url);
-
         const audit = await prisma.auditResult.create({
             data: {
-                score: resultat.score,
-                details: JSON.stringify({
-                    vitesse_ms_moyenne: resultat.vitesse_ms_moyenne,
-                    pages_analysees: resultat.pages_analysees,
-                    balises_manquantes_resume: resultat.balises_manquantes_resume,
-                    liens_analyses: resultat.liens_analyses,
-                    liens_morts: resultat.liens_morts,
-                }),
+                score: 0,
+                details: JSON.stringify({ statut: "en_cours" }),
                 siteId: id
             }
         });
 
-        return res.status(201).json({
+        runAudit(audit.id, site.url);
+
+        return res.status(202).json({
             success: true,
-            message: "Audit complété.",
-            data: audit
+            message: "Audit lancé.",
+            auditId: audit.id
         });
 
     } catch (err) {
         console.error(err);
 
-        return res.status(502).json({
+        return res.status(500).json({
             success: false,
-            message: "L'audit a échoué.",
+            message: "Erreur lors du lancement de l'audit.",
             error: err.message
         });
     }
@@ -294,7 +288,7 @@ async function listAudits(req, res) {
                 siteId: id
             },
             orderBy: {
-                createdAt: "desc"
+                crawledAt: "desc"
             }
         });
 
