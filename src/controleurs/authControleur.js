@@ -1,115 +1,96 @@
-const prisma = require("../configuration/prismaClient");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+'use strict';
 
-const inscription = async (req, res) => {
+const prisma  = require('../configuration/prismaClient');
+const bcrypt  = require('bcryptjs');
+const jwt     = require('jsonwebtoken');
+const config  = require('../config');
+const logger  = require('../utils/logger');
+const { ConflictError, UnauthorizedError } = require('../utils/errors');
+
+/**
+ * @swagger
+ * /api/auth/inscription:
+ *   post:
+ *     summary: Créer un compte utilisateur
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Inscription'
+ *     responses:
+ *       201:
+ *         description: Utilisateur créé
+ *       400:
+ *         $ref: '#/components/responses/ValidationError'
+ *       409:
+ *         $ref: '#/components/responses/ConflictError'
+ */
+const inscription = async (req, res, next) => {
   try {
-    console.log("BODY RECU :", req.body);
     const { name, email, password } = req.body;
 
-    const utilisateurExistant = await prisma.user.findUnique({
-      where: { email }
+    const existing = await prisma.user.findUnique({ where: { email } });
+    if (existing) return next(new ConflictError('Cet email est déjà utilisé.', 'EMAIL_ALREADY_EXISTS'));
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: { name, email, password: hashedPassword },
+      select: { id: true, name: true, email: true, role: true, createdAt: true },
     });
 
-    if (utilisateurExistant) {
-      return res.status(409).json({
-        success: false,
-        message: "Cet email est déjà utilisé."
-      });
-    }
+    logger.info('Nouvel utilisateur créé', { userId: user.id, email: user.email });
 
-    const motDePasseHash = await bcrypt.hash(password, 10);
-
-    const utilisateur = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: motDePasseHash
-      }
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Utilisateur créé avec succès.",
-      data: {
-        id: utilisateur.id,
-        name: utilisateur.name,
-        email: utilisateur.email,
-        role: utilisateur.role
-      }
-    });
-
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Erreur lors de l'inscription."
-    });
-  }
+    res.status(201).json({ status: 'success', data: user });
+  } catch (err) { next(err); }
 };
 
-const connexion = async (req, res) => {
+/**
+ * @swagger
+ * /api/auth/connexion:
+ *   post:
+ *     summary: Connexion et obtention du JWT
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Connexion'
+ *     responses:
+ *       200:
+ *         description: JWT retourné
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ */
+const connexion = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    const utilisateur = await prisma.user.findUnique({
-      where: { email }
-    });
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) return next(new UnauthorizedError('Email ou mot de passe incorrect.', 'INVALID_CREDENTIALS'));
 
-    if (!utilisateur) {
-      return res.status(404).json({
-        success: false,
-        message: "Utilisateur introuvable."
-      });
-    }
-
-    const motDePasseValide = await bcrypt.compare(
-      password,
-      utilisateur.password
-    );
-
-    if (!motDePasseValide) {
-      return res.status(401).json({
-        success: false,
-        message: "Mot de passe incorrect."
-      });
-    }
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid)  return next(new UnauthorizedError('Email ou mot de passe incorrect.', 'INVALID_CREDENTIALS'));
 
     const token = jwt.sign(
-      {
-        id: utilisateur.id,
-        role: utilisateur.role
-      },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "24h"
-      }
+      { id: user.id, role: user.role },
+      config.jwt.secret,
+      { expiresIn: config.jwt.expiresIn }
     );
 
-    res.status(200).json({
-      success: true,
-      message: "Connexion réussie.",
-      token,
-      utilisateur: {
-        id: utilisateur.id,
-        name: utilisateur.name,
-        email: utilisateur.email,
-        role: utilisateur.role
-      }
-    });
+    logger.info('Connexion réussie', { userId: user.id });
 
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: "Erreur lors de la connexion."
+    res.json({
+      status: 'success',
+      data: {
+        token,
+        utilisateur: { id: user.id, name: user.name, email: user.email, role: user.role },
+      },
     });
-  }
+  } catch (err) { next(err); }
 };
 
-module.exports = {
-  inscription,
-  connexion
-};
+module.exports = { inscription, connexion };

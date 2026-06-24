@@ -1,12 +1,12 @@
 generator client {
   provider = "prisma-client-js"
-
 }
 
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
 enum Role {
   ADMIN
   ANALYSTE
@@ -18,12 +18,31 @@ enum Priorite {
   MOYENNE
   BASSE
 }
+
+enum TypeReco {
+  TECHNIQUE
+  CONTENU
+  MOTS_CLES
+}
+
+enum StatutReco {
+  OUVERTE
+  EN_COURS
+  RESOLUE
+}
+
+enum StatutContenu {
+  IDEE
+  REDACTION
+  PUBLIE
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
   password  String
-  role      Role     @default(REDACTEUR) //REDACTEUR : Il représente le rôle par défaut 
+  role      Role     @default(REDACTEUR)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -37,10 +56,10 @@ model Projet {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  userId Int
+  user   User  @relation(fields: [userId], references: [id])
 
-  sites       Site[]
+  sites  Site[]
 }
 
 model Site {
@@ -50,24 +69,29 @@ model Site {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  projetId  Int
-  projet    Projet   @relation(fields: [projetId], references: [id])
+  projetId Int
+  projet   Projet @relation(fields: [projetId], references: [id])
 
-  keywords     Keyword[]
-  auditResults AuditResult[]
+  keywords         Keyword[]
+  auditResults     AuditResult[]
+  recommandations  Recommandation[]
+  contenus         ContenuEditorial[]
 }
 
 model Keyword {
-  id            Int       @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   expression    String
   categorie     String?
   volume_estime Int?
-  priorite      Priorite  @default(MOYENNE)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  priorite      Priorite @default(MOYENNE)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  siteId        Int
-  site          Site      @relation(fields: [siteId], references: [id])
+  siteId Int
+  site   Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  positionnements Positionnement[]
+  recommandations Recommandation[]
 }
 
 model AuditResult {
@@ -80,6 +104,54 @@ model AuditResult {
   details            String?
   crawledAt          DateTime @default(now())
 
-  siteId             Int
-  site               Site     @relation(fields: [siteId], references: [id])
+  siteId Int
+  site   Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  recommandations Recommandation[]
+}
+
+model Positionnement {
+  id          Int      @id @default(autoincrement())
+  position    Int?
+  url_trouvee String?
+  mesuredAt   DateTime @default(now())
+
+  keywordId Int
+  keyword   Keyword @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+}
+
+model Recommandation {
+  id        Int        @id @default(autoincrement())
+  siteId    Int
+  auditId   Int?
+  keywordId Int?
+  type      TypeReco
+  priorite  Priorite
+  message   String
+  statut    StatutReco @default(OUVERTE)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  site    Site         @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  audit   AuditResult? @relation(fields: [auditId], references: [id], onDelete: SetNull)
+  keyword Keyword?     @relation(fields: [keywordId], references: [id], onDelete: SetNull)
+
+  contenus ContenuEditorial[]
+}
+
+model ContenuEditorial {
+  id               Int           @id @default(autoincrement())
+  titre            String
+  statut           StatutContenu @default(IDEE)
+  date_publication DateTime?
+  assigneA         String?
+  notes            String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  siteId           Int
+  site             Site           @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  recommandationId Int?
+  recommandation   Recommandation? @relation(fields: [recommandationId], references: [id], onDelete: SetNull)
 }

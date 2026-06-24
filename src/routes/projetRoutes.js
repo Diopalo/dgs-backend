@@ -1,11 +1,11 @@
+'use strict';
+
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
+const auth    = require('../middlewares/auth');
+const { createProjet, getMesProjets } = require('../controleurs/projetControleur');
 
-const projetControleur = require('../controleurs/projetControleur');
-const authentification = require('../middlewareJWT/authentification');
-
-router.post('/', authentification, projetControleur.createProjet);
-
-router.get('/', authentification, projetControleur.getMesProjets);
+router.post('/', auth, createProjet);
+router.get('/',  auth, getMesProjets);
 
 module.exports = router;

@@ -1,21 +1,53 @@
 {
-  "name": "backend",
+  "name": "dgs-seo-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API de référencement digital — DGS Africa",
   "main": "serveur.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":             "node serveur.js",
+    "dev":               "node --watch serveur.js",
+    "test":              "jest --runInBand --forceExit",
+    "test:coverage":     "jest --runInBand --forceExit --coverage",
+    "test:unit":         "jest tests/unit --runInBand --forceExit",
+    "test:integration":  "jest tests/integration --runInBand --forceExit"
   },
-  "keywords": [],
-  "author": "",
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "setupFiles": ["./tests/jest.setup.js"],
+    "coverageThreshold": {
+      "global": { "lines": 65, "functions": 65, "branches": 48, "statements": 65 }
+    },
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/",
+      "src/crawler/",
+      "prisma/",
+      "src/services/positionService.js"
+    ]
+  },
+  "keywords": ["seo", "api", "dgs", "africa"],
+  "author": "DGS Africa",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
-    "prisma": "^6.19.3"
+    "node-cron": "^4.5.0",
+    "prisma": "^6.19.3",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.19.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
   }
 }

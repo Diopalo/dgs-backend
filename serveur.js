@@ -1,25 +1,28 @@
-const express = require('express');
+'use strict';
 
-require('dotenv').config();
+const config = require('./src/config');
+const logger = require('./src/utils/logger');
+const app    = require('./src/app');
+const { startPurgeCron } = require('./src/jobs/purgeCron');
 
-const authRoutes   = require('./src/routes/authRoutes');
-const siteRoutes   = require('./src/routes/siteRoutes');
-const projetRoutes = require('./src/routes/projetRoutes');
-const motCleRoutes = require('./src/routes/motCleRoutes');
-
-const app = express();
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('API DGS SEO Platform - en construction');
+const server = app.listen(config.port, () => {
+  logger.info(`Serveur démarré sur http://localhost:${config.port}`, {
+    env:  config.env,
+    port: config.port,
+  });
+  startPurgeCron();
 });
 
-app.use('/api/auth',   authRoutes);
-app.use('/api/sites',  siteRoutes);
-app.use('/api/sites',  motCleRoutes);
-app.use('/api/projets', projetRoutes);
+// Arrêt gracieux
+const shutdown = async (signal) => {
+  logger.info(`Signal ${signal} reçu — arrêt gracieux…`);
+  server.close(async () => {
+    const prisma = require('./src/configuration/prismaClient');
+    await prisma.$disconnect();
+    logger.info('Serveur arrêté.');
+    process.exit(0);
+  });
+};
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
-});
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT',  () => shutdown('SIGINT'));

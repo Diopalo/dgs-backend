@@ -1,69 +1,29 @@
-const prisma = require('../configuration/prismaClient');
+'use strict';
 
-// Créer un projet
-const createProjet = async (req, res) => {
+const prisma  = require('../configuration/prismaClient');
+const { ValidationError } = require('../utils/errors');
+
+const createProjet = async (req, res, next) => {
   try {
     const { nom, description } = req.body;
-
-    if (!nom) {
-      return res.status(400).json({
-        success: false,
-        message: "Le nom du projet est obligatoire."
-      });
-    }
+    if (!nom) return next(new ValidationError('Le nom du projet est obligatoire.', [{ field: 'nom', message: 'Requis.' }]));
 
     const projet = await prisma.projet.create({
-      data: {
-        nom,
-        description,
-        userId: req.user.id
-      }
+      data: { nom, description, userId: req.user.id },
     });
 
-    return res.status(201).json({
-      success: true,
-      message: "Projet créé avec succès.",
-      data: projet
-    });
-
-  } catch (error) {
-    console.error("Erreur création projet :", error);
-
-    return res.status(500).json({
-      success: false,
-      message: "Erreur lors de la création du projet."
-    });
-  }
+    res.status(201).json({ status: 'success', data: projet });
+  } catch (err) { next(err); }
 };
 
-// Récupérer tous les projets de l'utilisateur connecté
-const getMesProjets = async (req, res) => {
+const getMesProjets = async (req, res, next) => {
   try {
     const projets = await prisma.projet.findMany({
-      where: {
-        userId: req.user.id
-      },
-      include: {
-        sites: true
-      }
+      where:   { userId: req.user.id },
+      include: { sites: true },
     });
-
-    return res.status(200).json({
-      success: true,
-      data: projets
-    });
-
-  } catch (error) {
-    console.error(error);
-
-    return res.status(500).json({
-      success: false,
-      message: "Erreur lors de la récupération des projets."
-    });
-  }
+    res.json({ status: 'success', data: projets });
+  } catch (err) { next(err); }
 };
 
-module.exports = {
-  createProjet,
-  getMesProjets
-};
+module.exports = { createProjet, getMesProjets };

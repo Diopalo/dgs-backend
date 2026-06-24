@@ -1,254 +1,337 @@
-# DGS SEO Platform — Rapport technique de la branche `pom`
+# DGS SEO Platform — Rapport technique
 
-> Auteur : Papa Ousmane Mane  
-> Date : 22 juin 2026  
-> Branche : `pom` (correctifs + J5 mots-clés)
+**Auteur :** Papa Ousmane Mane  
+**Branche :** `pom`  
+**Date :** 24 juin 2026
 
 ---
 
-## 1. Bugs corrigés
+## Ce qui a été corrigé
 
-### Bug 1 — Escalade de privilèges via le champ `role` à l'inscription
-**Fichier :** `src/controleurs/authControleur.js`  
-**Problème :** Le champ `role` était lu depuis `req.body` et enregistré directement en base, permettant à n'importe qui de s'inscrire en tant qu'ADMIN.  
-**Correction :** Suppression de `role` du destructuring et du `prisma.user.create`. Le rôle par défaut (`REDACTEUR`) défini dans le schéma Prisma s'applique automatiquement.
+### Escalade de privilèges à l'inscription
+
+Le champ `role` était lu directement depuis `req.body` et passé à Prisma. N'importe qui pouvait s'inscrire en tant qu'ADMIN en ajoutant `"role": "ADMIN"` dans le body. La correction est simple : ne jamais lire `role` depuis la requête. Le schéma Prisma attribue `REDACTEUR` par défaut, ce qui suffit.
 
 ```js
-// Avant (faille)
+// avant
 const { name, email, password, role } = req.body;
-data: { name, email, password: hash, role }
+await prisma.user.create({ data: { name, email, password: hash, role } });
 
-// Après (corrigé)
+// après
 const { name, email, password } = req.body;
-data: { name, email, password: hash }
+await prisma.user.create({ data: { name, email, password: hash } });
 ```
 
 ---
 
-### Bug 2 — Historique des audits trié sur le mauvais champ
-**Fichier :** `src/controleurs/siteControleur.js` — fonction `listAudits`  
-**Problème :** `orderBy: { createdAt: "desc" }` — le modèle `AuditResult` n'a pas de champ `createdAt`, il a `crawledAt`. Prisma levait une erreur silencieuse.  
-**Correction :** `orderBy: { crawledAt: "desc" }`
+### Audit bloquant — le client recevait un timeout
 
----
+`launchAudit` faisait un `await runAudit(...)`, ce qui bloquait la connexion HTTP pendant toute la durée du crawl (parfois 10 minutes). Le client tombait en timeout avant de recevoir une réponse.
 
-### Bug 3 — Audit bloquant (réponse HTTP jamais envoyée)
-**Fichier :** `src/controleurs/siteControleur.js` — fonction `launchAudit`  
-**Problème :** `await runAudit(...)` bloquait la requête pendant toute la durée du crawl (plusieurs minutes). Le client recevait un timeout.  
-**Correction :** Pattern fire-and-forget — `runAudit(audit.id, site.url)` sans `await`. Le serveur répond immédiatement `202 Accepted` avec l'`auditId`, et le crawl tourne en arrière-plan.
+La solution est de lancer l'audit en fire-and-forget et de répondre immédiatement avec l'`auditId`. Le client peut ensuite poller `GET /api/sites/:id/audits/:auditId` pour suivre l'avancement.
 
 ```js
-// Avant (bloquant)
+// avant
 await runAudit(audit.id, site.url);
-return res.status(200).json({ ... });
+res.status(200).json({ ... });
 
-// Après (fire-and-forget)
-runAudit(audit.id, site.url);   // pas d'await
-return res.status(202).json({ success: true, auditId: audit.id });
+// après
+runAudit(audit.id, site.url);  // sans await
+res.status(202).json({ auditId: audit.id });
 ```
 
 ---
 
-### Bug 4 — Deux bases SQLite différentes (CLI vs runtime Node)
-**Fichier :** `.env`  
-**Problème :** `DATABASE_URL="file:./dev.db"` → chemin relatif. Le CLI Prisma (`npx prisma migrate`) résolvait vers `prisma/dev.db`, tandis que Node.js résolvait vers `./dev.db` (racine). Résultat : deux fichiers SQLite distincts, les migrations ne s'appliquaient pas sur la base utilisée au runtime.  
-**Correction :** Chemin absolu dans `.env` :  
+### Deux bases SQLite en parallèle
+
+Avec `DATABASE_URL="file:./dev.db"`, Prisma CLI et Node.js ne résolvaient pas le chemin au même endroit. Prisma migrate créait `prisma/dev.db`, le serveur ouvrait `./dev.db` à la racine. Les migrations ne s'appliquaient jamais sur la base réellement utilisée.
+
+Correction : chemin absolu dans `.env`.
+
 ```
 DATABASE_URL="file:/home/ousmane/www/dgs-backend/prisma/dev.db"
 ```
 
 ---
 
-### Bug 5 — Resolver DNS async d'aiohttp cassé
-**Fichier :** `src/crawler/audit.py`  
-**Problème :** Le resolver DNS asynchrone natif d'aiohttp (`asyncio.shield(resolved_host_task)`) était annulé dans certains environnements, provoquant des erreurs de connexion sur tous les sites.  
-**Correction :** Utilisation de `aiohttp.ThreadedResolver()` qui délègue la résolution DNS à `socket.getaddrinfo` via un thread pool (résolution synchrone du système, sans les bugs du resolver async).
+### Historique des audits trié sur un champ inexistant
 
-```python
-resolver  = aiohttp.ThreadedResolver()
-connector = aiohttp.TCPConnector(limit=max_workers, ssl=False, resolver=resolver)
+`listAudits` faisait `orderBy: { createdAt: "desc" }` mais `AuditResult` n'a pas de champ `createdAt`, seulement `crawledAt`. Prisma levait une erreur silencieuse. Corrigé en `orderBy: { crawledAt: "desc" }`.
+
+---
+
+### Crawler Python — trois bugs d'environnement
+
+**Resolver DNS.** Le resolver DNS asynchrone natif d'aiohttp se faisait annuler dans certains environnements, rendant tous les sites injoignables. Remplacé par `aiohttp.ThreadedResolver()` qui délègue à `socket.getaddrinfo` via un thread pool — plus lent mais fiable.
+
+**Encodage Brotli.** Certains sites répondaient `Content-Encoding: br`. La version d'aiohttp installée ne supporte pas Brotli et levait une exception à la lecture du body. Ajout de `Accept-Encoding: gzip, deflate` dans les headers pour ne jamais négocier Brotli.
+
+**robots.txt 404.** `RobotFileParser.can_fetch()` retourne `False` si `read()` n'a jamais été appelé. Quand robots.txt renvoyait 404, on ne faisait rien, et toutes les URLs se retrouvaient bloquées. La correction applique `rp.allow_all = True` dès que le statut n'est pas 200, ce qui correspond au comportement standard décrit dans la RFC.
+
+---
+
+### dead_links toujours vide dans la réponse API
+
+Les liens morts sont persistés dans deux colonnes séparées : `liens_morts` (le tableau JSON brut) et `details` (le blob complet incluant uniquement le compteur dans `breakdown.dead_links.count`). Dans `getAuditById`, seul `details` était parsé et renvoyé — `liens_morts` n'était jamais injecté dedans. Le front recevait `details.dead_links = undefined` même quand 32 liens morts existaient en base.
+
+```js
+// avant
+const details = audit.details ? JSON.parse(audit.details) : null;
+res.json({ status: 'success', data: { ...audit, details } });
+
+// après
+const details   = audit.details     ? JSON.parse(audit.details)     : null;
+const deadLinks = audit.liens_morts ? JSON.parse(audit.liens_morts) : [];
+if (details) details.dead_links = deadLinks;
+res.json({ status: 'success', data: { ...audit, details } });
 ```
 
 ---
 
-### Bug 6 — Encodage Brotli non supporté
-**Fichier :** `src/crawler/audit.py`  
-**Problème :** Certains sites (ex: example.com) renvoyaient `Content-Encoding: br` (Brotli). La version système d'aiohttp ne décode pas Brotli → exception à la lecture du body.  
-**Correction :** Header `Accept-Encoding: gzip, deflate` pour exclure Brotli des encodages acceptés.
+### Positions Google — simulation supprimée
 
-```python
-headers = {"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"}
-```
+Sans clé SerpAPI, `measureKeyword` échouait, retournait `null`, mais créait quand même une entrée en base marquant la mesure comme effectuée. Résultat : le moteur de règles croyait avoir des données et générait des recommandations (R07 — page 2 Google) sur du vide.
 
----
+La correction est de ne plus simuler. `measureKeyword` retourne maintenant `null` directement avec un log d'avertissement, sans toucher à la base. Les règles R06 et R08 ont été adaptées pour fonctionner honnêtement avec `position = null`. R07 (page 2) est désactivée — elle n'a de sens qu'avec une position réelle.
 
-### Bug 7 — robots.txt 404 bloquait l'intégralité du crawl
-**Fichier :** `src/crawler/audit.py`  
-**Problème :** `urllib.robotparser.RobotFileParser.can_fetch()` retourne `False` si `read()` n'a jamais été appelé. Or, on utilisait `parse()` manuellement sur le contenu 200, mais en cas de 404 on n'appelait rien → toutes les URLs étaient rejetées.  
-**Correction :** Définir `rp.allow_all = True` explicitement quand le status n'est pas 200 ou en cas d'exception.
-
-```python
-if resp.status == 200:
-    rp.parse(text.splitlines())
-else:
-    rp.allow_all = True  # 404/5xx → pas de restriction (standard RFC)
-```
+Quand DGS décidera de brancher une vraie API (DataForSEO, SerpAPI, Google Search Console), il n'y a qu'une seule fonction à modifier.
 
 ---
 
-## 2. Ce qui fonctionne
+## Ce qui fonctionne
 
-### Authentification & Contrôle d'accès (J2)
-- Inscription (`POST /api/auth/inscription`) — hash bcrypt, rôle par défaut REDACTEUR
-- Connexion (`POST /api/auth/connexion`) — JWT signé, valide 24h
-- Middleware `authentification` — vérifie le JWT sur toutes les routes protégées
-- Middleware `autorisationRole(...)` — bloque l'accès si le rôle ne correspond pas
-- 3 rôles : `ADMIN`, `ANALYSTE`, `REDACTEUR`
+### Authentification et contrôle d'accès
 
-### CRUD Projets (J3)
-- `GET /api/projets` — liste les projets de l'utilisateur connecté
-- `POST /api/projets` — crée un projet (tous rôles)
-- `PUT /api/projets/:id`, `DELETE /api/projets/:id` — modification/suppression (propriétaire ou ADMIN)
+L'inscription hache le mot de passe avec bcrypt (12 rounds) et attribue le rôle `REDACTEUR` par défaut. La connexion vérifie le hash et retourne un JWT signé. Toutes les routes protégées passent par le middleware `auth` qui vérifie la signature du token, puis `roles()` qui contrôle que le rôle de l'utilisateur est dans la liste autorisée.
 
-### CRUD Sites (J3)
-- `GET /api/sites`, `GET /api/sites/:id`
-- `POST /api/sites` — ADMIN uniquement
-- `PUT /api/sites/:id`, `DELETE /api/sites/:id` — ADMIN uniquement
+Trois rôles : **ADMIN**, **ANALYSTE**, **REDACTEUR**. Un REDACTEUR ne peut pas créer de site. Un ANALYSTE ne peut pas supprimer un mot-clé. Seul un ADMIN peut purger les données.
 
-### Audit SEO asynchrone (J4)
-- `POST /api/sites/:id/audits` — lance un audit en arrière-plan, répond `202` immédiatement
-- `GET /api/sites/:id/audits` — historique des audits triés par `crawledAt desc`
-- Cycle de vie en base : `en_cours` → `termine` / `echec`
-- Retry automatique (RG-05) : 2 tentatives en cas d'erreur réseau pure
-- Timeout configurable via `.env` (`AUDIT_TIMEOUT_MS`, défaut 10 min)
+---
 
-### Crawler BFS Python (J4)
-- Crawl en largeur (BFS) avec `deque`
-- Respect de `robots.txt` avant chaque requête (RG-01)
-- Délai de politesse configurable (`AUDIT_DELAY_MS`)
-- Extraction SEO par page : `<title>`, `<meta description>`, `<h1>`, canonical, noindex, nofollow
-- Collecte des liens internes + externes
-- Vérification des liens morts en parallèle (HEAD → GET fallback, Semaphore)
-- Paramètres CLI : `--max-pages`, `--delay-ms`, `--max-workers`
+### CRUD Projets et Sites
 
-### Score SEO (RG-02)
-Calcul sur 100 points dans `src/services/auditRunner.js` :
+Un projet regroupe des sites et appartient à l'utilisateur qui l'a créé. La liste des projets est filtrée par `userId` — chaque utilisateur ne voit que les siens. Pour les sites, seul un ADMIN peut créer, modifier ou supprimer.
 
-| Critère | Pénalité |
+---
+
+### Audit SEO
+
+L'audit est le cœur du système. Quand on appelle `POST /api/sites/:id/audits`, le serveur crée immédiatement un `AuditResult` en base avec `statut: "en_cours"` et répond `202` avec l'`auditId`. En parallèle, `auditRunner.js` spawne le crawler Python.
+
+Le crawler (`audit.py`) fait un BFS à partir de l'URL racine : il charge la page, extrait tous les liens internes, les met dans une deque, et visite chaque lien avec un délai de politesse entre les requêtes. Pour chaque page il collecte : `<title>`, `<meta description>`, `<h1>`, balise canonical, directive noindex, et tous les liens. Les liens morts sont vérifiés en parallèle avec un Semaphore pour ne pas surcharger le serveur cible. En dehors du contenu, le crawler mesure aussi le SSL (validité, date d'expiry), le TTFB, l'IP via DNS, et l'âge du domaine via WHOIS.
+
+Tout ça arrive dans `auditRunner.js` sous forme de JSON sur stdout. `auditRunner` calcule deux scores séparés :
+
+**Score technique** (sur 100) — basé sur le contenu des pages crawlées :
+
+| Critère | Impact |
 |---|---|
-| Titre manquant | -15 × ratio pages affectées |
-| Meta description manquante | -10 × ratio |
-| H1 absent ou multiple | -10 × ratio |
-| Vitesse moy. > 3000 ms | -20 |
-| Vitesse moy. > 1000 ms | -10 |
-| Lien mort | -5 par lien (cap -30) |
-| Toutes pages ont canonical | +3 |
-| Aucun noindex | +2 |
+| Pages sans `<title>` | −15 × ratio pages affectées |
+| Pages sans meta description | −10 × ratio |
+| Pages avec H1 absent ou multiple | −10 × ratio |
+| Vitesse moyenne > 3 000 ms | −20 |
+| Vitesse moyenne > 1 000 ms | −10 |
+| Liens morts | −5 par lien, plafonné à −30 |
+| Site < 5 pages | −10 |
+| Site < 10 pages | −5 |
+| Site ≥ 50 pages | +2 |
+| Site ≥ 100 pages | +3 |
+| Toutes les pages ont un canonical | +3 |
+| Aucune page en noindex | +2 |
 
-### Module Mots-clés (J5)
-- `GET /api/sites/:siteId/mots-cles` — liste avec filtres (`?priorite`, `?categorie`, `?search`) et tri HAUTE > MOYENNE > BASSE
-- `POST /api/sites/:siteId/mots-cles` — ADMIN + ANALYSTE, validation complète + vérification ownership
-- `PUT /api/sites/:siteId/mots-cles/:id` — mise à jour partielle, vérification cross-site
-- `DELETE /api/sites/:siteId/mots-cles/:id` — ADMIN uniquement
-- `GET /api/sites/:siteId/mots-cles/stats` — agrégats (total, par priorité, par catégorie, volume total)
+Les pénalités de balises sont proportionnelles au ratio de pages affectées, pas binaires. Un site avec 1 titre manquant sur 500 pages perd moins qu'un site avec 100 titres manquants sur 200 pages.
+
+**Score domaine** (sur 100) — basé sur les métriques serveur et DNS :
+
+| Critère | Impact |
+|---|---|
+| SSL absent ou invalide | −30 |
+| SSL expire dans moins de 30 jours | −15 |
+| Domaine expire dans moins de 30 jours | −20 |
+| TTFB > 600 ms | −20 |
+| TTFB > 300 ms | −10 |
+| Site non HTTPS | −30 |
+
+Le **score global** combine les deux : `technique × 0.6 + domaine × 0.4`.
+
+En cas d'erreur réseau pure (DNS, connexion refusée), le crawler est relancé une deuxième fois automatiquement avant de marquer l'audit en `echec`. Un timeout global de 10 minutes tue le processus s'il dépasse. À la fin d'un audit réussi, les recommandations sont générées automatiquement.
 
 ---
 
-## 3. Comment ça doit fonctionner
+### Mots-clés
 
-### Architecture générale
+Chaque site peut avoir une liste de mots-clés à suivre, avec une priorité (HAUTE / MOYENNE / BASSE), une catégorie libre et un volume de recherche estimé. La liste est triée HAUTE > MOYENNE > BASSE par défaut. On peut filtrer par priorité, catégorie ou faire une recherche sur l'expression. L'endpoint `/stats` retourne le total, la répartition par priorité et catégorie, et le volume total estimé.
+
+La création et la modification sont réservées aux ADMIN et ANALYSTE. Un ANALYSTE ne peut ajouter un mot-clé qu'à un site dont il est propriétaire du projet (contrôle cross-site).
+
+---
+
+### Recommandations
+
+Le moteur de règles tourne dans `recoService.js` et produit des recommandations en deux passes : une sur les données du dernier audit, une sur les mots-clés.
+
+**Règles audit :**
+- R01 : pages sans `<title>` → TECHNIQUE, HAUTE
+- R02 : pages sans meta description → TECHNIQUE, priorité calculée selon le ratio (HAUTE si plus de 50% des pages sont concernées)
+- R03 : problème H1 → TECHNIQUE, MOYENNE
+- R04 : vitesse dégradée → TECHNIQUE, HAUTE ou MOYENNE selon le seuil
+- R05 : liens morts → TECHNIQUE, HAUTE si ≥ 5 liens morts
+
+**Règles mots-clés :**
+- R06 : volume ≥ 500 et position non mesurée → CONTENU, HAUTE ("Créer une page dédiée ciblant ce terme")
+- R07 : position en page 2 (11–20) → désactivée, nécessite une API de positionnement réelle
+- R08 : priorité HAUTE et position non mesurée → MOTS_CLES, HAUTE ("Lancer une stratégie de contenu ciblée")
+
+Les recommandations sont dédupliquées par message : si une reco identique est déjà OUVERTE ou EN_COURS, elle n'est pas recréée. Le statut suit le cycle OUVERTE → EN_COURS → RESOLUE.
+
+---
+
+### Calendrier éditorial
+
+Le module Contenus permet de planifier des articles liés aux recommandations SEO. Un contenu suit un pipeline en trois étapes : IDEE → REDACTION → PUBLIE. Les transitions sont validées côté serveur — impossible de passer d'IDEE directement à PUBLIE, et impossible de supprimer un contenu déjà publié. Un contenu peut référencer la recommandation à l'origine de sa création, ce qui permet de tracer l'action jusqu'à sa source.
+
+L'endpoint calendrier regroupe les contenus par mois (`"2026-06"`, `"2026-07"`, etc.) en filtrant ceux qui ont une date de publication définie.
+
+---
+
+### Dashboard
+
+Le dashboard site agrège en une seule réponse tout ce dont un analyste a besoin : dernier score d'audit avec l'évolution sur les 10 derniers audits, répartition des mots-clés, top 5 des positions avec tendance (hausse/baisse/stable), recommandations ouvertes, et prochains articles planifiés.
+
+Il calcule aussi un **score de santé globale** :
 
 ```
-Client HTTP
-    │
-    ▼
-Express (serveur.js, port 3000)
-    │
-    ├── /api/auth      → authRoutes     → authControleur
-    ├── /api/projets   → projetRoutes   → projetControleur
-    ├── /api/sites     → siteRoutes     → siteControleur
-    │                  → motCleRoutes   → motCleControleur
-    │
-    └── siteControleur.launchAudit()
-            │  fire-and-forget (pas d'await)
-            ▼
-        auditRunner.runAudit(auditId, siteUrl)
-            │
-            ├── spawn python3 src/crawler/audit.py <url> --max-pages N ...
-            │       │
-            │       └── BFS crawler → JSON stdout
-            │
-            ├── calculateSeoScore(crawlResult) → score/100
-            └── prisma.auditResult.update(...)  → statut: "termine"
+santé = score_audit × 0.4 + score_positions × 0.3 + score_recos × 0.3
+
+score_positions = max(0, 100 − (mots-clés hors top 10 / total) × 100)
+score_recos     = max(0, 100 − nb_recommandations_HAUTE_ouvertes × 10)
+
+bon ≥ 70  |  moyen 40–69  |  critique < 40
 ```
 
-### Flux d'un audit complet
+Le dashboard global (`/api/dashboard/global`, ADMIN uniquement) liste tous les sites triés par santé croissante — les plus dégradés apparaissent en premier.
 
-1. `POST /api/sites/:id/audits` (ADMIN ou ANALYSTE)
-2. Serveur crée un `AuditResult` en base avec `statut: "en_cours"`, `score: 0`
-3. Serveur répond `202 { auditId: N }` immédiatement
-4. En arrière-plan : `audit.py` crawle le site en BFS
-   - Charge `robots.txt`, respecte les règles
-   - Visite chaque page (délai de politesse entre requêtes)
-   - Extrait les métriques SEO
-   - Vérifie les liens morts en parallèle
-   - Imprime le JSON résultat sur stdout
-5. `auditRunner.js` parse le JSON, calcule le score
-6. Met à jour `AuditResult` : `statut: "termine"`, `score`, `vitesse_ms`, `balises_manquantes`, `liens_morts`, `details`
-7. Le client poll `GET /api/sites/:id/audits` pour voir quand `statut !== "en_cours"`
+---
 
-### Limite connue : sites SPA (React / Vue / Angular)
+### Administration et purge
 
-Le crawler HTTP lit le HTML **brut** renvoyé par le serveur. Les sites qui utilisent un framework JavaScript côté client (ex: femmesluxe.com) renvoient un HTML minimal :
-```html
-<body><div id="root"></div></body>
+`GET /health` retourne l'état de la base de données, l'uptime et la version. `GET /api/admin/stats` retourne les compteurs globaux (sites, audits, mots-clés, taille de la base). `POST /api/admin/purge` déclenche manuellement la suppression des données de plus de 90 jours (audits et positionnements). Cette purge tourne aussi automatiquement chaque nuit à 02:00 UTC via `node-cron`.
+
+---
+
+## Architecture
+
 ```
-Le contenu réel est généré par JavaScript dans le navigateur — invisible au crawler HTTP. Ces sites seront analysés comme "1 page, 0 lien". Pour les supporter correctement, il faudrait intégrer Playwright ou Puppeteer (prévu dans un jalon ultérieur).
+Client
+  │
+  ▼
+Express — src/app.js (port 3000)
+  │
+  ├── /health                         healthCheck (admin)
+  ├── /api/auth                       inscription, connexion
+  ├── /api/projets                    CRUD projets
+  ├── /api/sites                      CRUD sites
+  │     ├── /:id/audits               lancement + historique + détail
+  │     ├── /:id/mots-cles            CRUD + stats + mesure positions
+  │     ├── /:id/recommandations      génération + liste + statut
+  │     ├── /:id/contenus             CRUD + calendrier
+  │     └── /:id/dashboard            dashboard site
+  ├── /api/dashboard/global           vue globale (ADMIN)
+  ├── /api/admin                      stats + purge (ADMIN)
+  └── /api/docs                       Swagger UI
 
-### Variables d'environnement (.env)
+Middlewares (dans l'ordre) :
+  requestLogger → rateLimit → auth → roles → validate → errorHandler
 
-```env
-DATABASE_URL="file:/chemin/absolu/vers/prisma/dev.db"  # ABSOLU obligatoire
-JWT_SECRET="votre-secret-fort"
-PORT=3000
+Services métier (pas d'accès HTTP direct) :
+  auditRunner.js    orchestration crawl + calcul des scores
+  recoService.js    moteur de règles R01–R08
+  positionService.js  stub null en attente d'une API
 
-# Crawler (optionnel)
-AUDIT_MAX_PAGES=500       # pages max par crawl
-AUDIT_DELAY_MS=500        # délai entre requêtes (ms)
-AUDIT_MAX_WORKERS=5       # workers parallèles (liens morts)
-AUDIT_TIMEOUT_MS=600000   # timeout global par audit (10 min)
+Crawl (subprocess Python) :
+  audit.py
+  ├── BFS avec deque, respect robots.txt, délai configurable
+  ├── Extraction SEO par page
+  ├── Vérification des liens morts (HEAD → GET, Semaphore)
+  └── SSL, DNS, WHOIS, TTFB → JSON stdout → auditRunner.js
+
+Tâche planifiée :
+  purgeCron.js — node-cron, 02:00 UTC, rétention 90 jours
 ```
 
-### Schéma de base de données
+---
+
+## Modèle de données
 
 ```
 User ──< Projet ──< Site ──< AuditResult
-                        └──< Keyword
+                        ├──< Keyword ──< Positionnement
+                        ├──< Recommandation ──< ContenuEditorial
+                        └──< ContenuEditorial
 ```
 
-- `User` : authentification, rôle ADMIN/ANALYSTE/REDACTEUR
-- `Projet` : groupe de sites, appartient à un User
-- `Site` : URL unique, appartient à un Projet
-- `AuditResult` : résultat d'un crawl SEO, appartient à un Site
-- `Keyword` : mot-clé suivi, priorité HAUTE/MOYENNE/BASSE, appartient à un Site
+`AuditResult` stocke le score global, le statut (`en_cours` / `termine` / `echec`), la vitesse moyenne, les balises manquantes (JSON), les liens morts (JSON), et un blob `details` qui contient tout le reste (scores décomposés, breakdown, données SSL/DNS/WHOIS, liste des pages).
+
+`Recommandation` peut être liée à un audit (R01–R05) ou à un mot-clé (R06–R08), ou aux deux. `ContenuEditorial` peut pointer vers la recommandation qui l'a motivé.
 
 ---
 
-## 4. Tests de validation exécutés
+## Configuration
 
-| Test | Statut |
+```env
+DATABASE_URL="file:/chemin/absolu/vers/prisma/dev.db"   # absolu obligatoire
+JWT_SECRET="..."
+
+PORT=3000
+JWT_EXPIRES_IN=7d
+
+CRAWLER_MAX_PAGES=500        # pages max par crawl (défaut)
+CRAWLER_DELAY_MS=500         # délai entre requêtes en ms
+CRAWLER_MAX_WORKERS=5        # parallélisme pour les liens morts
+CRAWLER_TIMEOUT_MS=600000    # 10 minutes avant kill du processus
+```
+
+---
+
+## Tests
+
+89 tests, 12 fichiers, tous passent.
+
+| Fichier | Tests |
 |---|---|
-| Inscription sans champ `role` dans le body | PASS |
-| Connexion et récupération du JWT | PASS |
-| Refus de rôle non autorisé (403) | PASS |
-| CRUD sites + projets | PASS |
-| Audit `quotes.toscrape.com` — 20 pages crawlées, score 92/100 | PASS |
-| Audit site inexistant — 2 tentatives, statut `echec` | PASS |
-| Audit `femmesluxe.com` — 1 page (SPA, comportement attendu) | PASS |
-| Création 4 mots-clés avec priorités différentes | PASS |
-| Tri HAUTE > MOYENNE > BASSE | PASS |
-| Filtre `?priorite=HAUTE` → 2 résultats | PASS |
-| Stats : `total=4`, `volume_total_estime=4900` | PASS |
-| DELETE par ANALYSTE → 403 | PASS |
-| POST par ANALYSTE sur site d'autrui → 403 ownership | PASS |
-| Protection cross-site (mot-clé d'un autre site) → 404 | PASS |
+| `unit/pagination.test.js` | 13 |
+| `unit/recoService.test.js` | 10 |
+| `integration/auth.test.js` | 9 |
+| `integration/sites.test.js` | 9 |
+| `integration/contenus.test.js` | 8 |
+| `integration/keywords.test.js` | 7 |
+| `unit/scoring.test.js` | 7 |
+| `unit/errors.test.js` | 7 |
+| `integration/admin.test.js` | 7 |
+| `integration/recommandations.test.js` | 6 |
+| `integration/dashboard.test.js` | 6 |
+| `integration/audits.test.js` | 5 |
+
+Les tests d'intégration utilisent une base SQLite en mémoire isolée par suite. Les tests unitaires couvrent le moteur de scoring, le moteur de règles et les helpers de pagination sans dépendance à la base.
+
+### Test E2E sur seneweb.com (24 juin 2026)
+
+Audit complet sur un vrai site de presse sénégalais, 500 pages crawlées en ~9 minutes :
+
+| | |
+|---|---|
+| Score global | 79/100 |
+| Score technique | 65/100 |
+| Score domaine | 100/100 |
+| TTFB | 298 ms |
+| SSL | valide, 69 jours restants |
+| Âge du domaine | 26 ans |
+| Liens morts | 32 (URLs en 404) |
+
+Les 35 points perdus sur le score technique se décomposent : 32 liens morts (−30 pts, plafond atteint), H1 manquant sur 440/500 pages (−9 pts), meta description manquante sur 47/500 pages (−1 pt). Le domaine est en revanche irréprochable : SSL valide, HTTPS, TTFB sous 300 ms, aucune pénalité.
+
+---
+
+## Limite connue : sites SPA
+
+Le crawler lit le HTML brut renvoyé par le serveur. Les sites React, Vue ou Angular renvoient un `<div id="root"></div>` vide — le contenu est rendu côté client par JavaScript, invisible pour un crawler HTTP classique. Ces sites sont analysés comme « 1 page, 0 lien ». Pour les prendre en charge correctement, il faudrait passer par un navigateur headless (Playwright ou Puppeteer).

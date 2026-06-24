@@ -3,19 +3,16 @@
 const { spawn } = require('child_process');
 const path      = require('path');
 const prisma    = require('../configuration/prismaClient');
+const { generateRecommandations } = require('./recoService');
+const config    = require('../config');
+const logger    = require('../utils/logger');
 
-// ── Configuration (toutes les valeurs viennent de l'environnement) ────────────
-
-const PYTHON_EXECUTABLE = process.env.PYTHON_EXECUTABLE  || 'python3';
+const PYTHON_EXECUTABLE = config.crawler.python;
 const SCRIPT_PATH       = path.join(__dirname, '..', 'crawler', 'audit.py');
-
-// Timeout global par audit : 10 minutes (configurable via .env)
-const AUDIT_TIMEOUT_MS  = Number(process.env.AUDIT_TIMEOUT_MS)  || 10 * 60 * 1000;
-
-// Paramètres passés au crawler Python (surchargeables via .env)
-const AUDIT_MAX_PAGES   = Number(process.env.AUDIT_MAX_PAGES)   || 500;
-const AUDIT_DELAY_MS    = Number(process.env.AUDIT_DELAY_MS)    || 500;
-const AUDIT_MAX_WORKERS = Number(process.env.AUDIT_MAX_WORKERS) || 5;
+const AUDIT_TIMEOUT_MS  = config.crawler.timeoutMs;
+const AUDIT_MAX_PAGES   = config.crawler.maxPages;
+const AUDIT_DELAY_MS    = config.crawler.delayMs;
+const AUDIT_MAX_WORKERS = config.crawler.maxWorkers;
 
 // ── Pondérations du score SEO (RG-02) ────────────────────────────────────────
 
@@ -26,24 +23,36 @@ const SEO_WEIGHTS = {
   PENALTY_H1_ISSUE:           10,
 
   // Pénalités vitesse (seuils en ms, non cumulables)
-  SPEED_SLOW_THRESHOLD_MS:    1_000,
+  SPEED_SLOW_THRESHOLD_MS:      1_000,
   SPEED_VERY_SLOW_THRESHOLD_MS: 3_000,
-  PENALTY_SPEED_SLOW:         10,
-  PENALTY_SPEED_VERY_SLOW:    20,
+  PENALTY_SPEED_SLOW:           10,
+  PENALTY_SPEED_VERY_SLOW:      20,
 
   // Pénalités liens morts (par lien, avec plafond)
-  PENALTY_DEAD_LINK:          5,
-  PENALTY_DEAD_LINK_CAP:      30,
+  PENALTY_DEAD_LINK:            5,
+  PENALTY_DEAD_LINK_CAP:        30,
 
-  // Bonus (optionnels)
-  BONUS_ALL_CANONICAL:        3,
-  BONUS_NO_NOINDEX:           2,
+  // Pénalités taille du site (trop peu de pages indexées)
+  SIZE_VERY_SMALL_THRESHOLD:    5,
+  SIZE_SMALL_THRESHOLD:         10,
+  PENALTY_SIZE_VERY_SMALL:      10,
+  PENALTY_SIZE_SMALL:           5,
+
+  // Bonus taille (site bien fourni en contenu)
+  SIZE_LARGE_THRESHOLD:         50,
+  SIZE_VERY_LARGE_THRESHOLD:    100,
+  BONUS_SIZE_LARGE:             2,
+  BONUS_SIZE_VERY_LARGE:        3,
+
+  // Bonus qualité (optionnels)
+  BONUS_ALL_CANONICAL:          3,
+  BONUS_NO_NOINDEX:             2,
 };
 
 // ── Logger avec timestamp ─────────────────────────────────────────────────────
 
-function log(auditId, message) {
-  console.log(`[${new Date().toISOString()}] [Audit #${auditId}] ${message}`);
+function log(auditId, message, data = {}) {
+  logger.info(`[Audit #${auditId}] ${message}`, { auditId, ...data });
 }
 
 // ── Algorithme de score SEO — isolé et testable (RG-02) ──────────────────────
@@ -128,7 +137,31 @@ function calculateSeoScore(crawlResult) {
     penalty: -penaltyDead,
   };
 
-  // ── Bonus ─────────────────────────────────────────────────────────────────
+  // ── Pénalité / bonus taille du site ──────────────────────────────────────
+  let sizePenalty = 0;
+  let sizeBonus   = 0;
+
+  if (total < SEO_WEIGHTS.SIZE_VERY_SMALL_THRESHOLD) {
+    sizePenalty = SEO_WEIGHTS.PENALTY_SIZE_VERY_SMALL;
+  } else if (total < SEO_WEIGHTS.SIZE_SMALL_THRESHOLD) {
+    sizePenalty = SEO_WEIGHTS.PENALTY_SIZE_SMALL;
+  }
+
+  if (total >= SEO_WEIGHTS.SIZE_VERY_LARGE_THRESHOLD) {
+    sizeBonus = SEO_WEIGHTS.BONUS_SIZE_VERY_LARGE;
+  } else if (total >= SEO_WEIGHTS.SIZE_LARGE_THRESHOLD) {
+    sizeBonus = SEO_WEIGHTS.BONUS_SIZE_LARGE;
+  }
+
+  score -= sizePenalty;
+  score += sizeBonus;
+  breakdown.site_size = {
+    total_pages: total,
+    penalty:     -sizePenalty,
+    bonus:       sizeBonus,
+  };
+
+  // ── Bonus qualité ─────────────────────────────────────────────────────────
   const allHaveCanonical = pages.every(p => p.canonical);
   const noNoindex        = pages.every(p => !p.noindex);
   let bonus = 0;
@@ -148,6 +181,54 @@ function calculateSeoScore(crawlResult) {
     score: Math.max(0, Math.min(100, Math.round(score))),
     breakdown,
   };
+}
+
+// ── Score domaine (SSL, expiry, TTFB, HTTPS) ─────────────────────────────────
+
+function calculateDomainScore(crawlResult) {
+  let score = 100;
+  const breakdown = {};
+
+  // SSL
+  if (!crawlResult.ssl?.valid) {
+    score -= 30;
+    breakdown.ssl = { penalty: -30, reason: 'SSL invalide ou absent' };
+  } else if (crawlResult.ssl?.expires_in_days < 30) {
+    score -= 15;
+    breakdown.ssl = { penalty: -15, reason: 'SSL expire bientôt' };
+  } else {
+    breakdown.ssl = { penalty: 0, reason: 'SSL valide' };
+  }
+
+  // Expiration du domaine
+  if (crawlResult.domain?.expires_in_days != null && crawlResult.domain.expires_in_days < 30) {
+    score -= 20;
+    breakdown.domain_expiry = { penalty: -20, reason: 'Domaine expire dans moins de 30 jours' };
+  } else {
+    breakdown.domain_expiry = { penalty: 0 };
+  }
+
+  // TTFB
+  const ttfb = crawlResult.server?.ttfb_ms;
+  if (ttfb > 600) {
+    score -= 20;
+    breakdown.ttfb = { penalty: -20, reason: `TTFB ${ttfb}ms > 600ms` };
+  } else if (ttfb > 300) {
+    score -= 10;
+    breakdown.ttfb = { penalty: -10, reason: `TTFB ${ttfb}ms > 300ms` };
+  } else {
+    breakdown.ttfb = { penalty: 0, reason: `TTFB ${ttfb}ms optimal` };
+  }
+
+  // HTTPS
+  if (!crawlResult.server?.https) {
+    score -= 30;
+    breakdown.https = { penalty: -30, reason: 'Site non sécurisé (HTTP)' };
+  } else {
+    breakdown.https = { penalty: 0, reason: 'HTTPS actif' };
+  }
+
+  return { score: Math.max(0, score), breakdown };
 }
 
 // ── Appel au crawler Python ───────────────────────────────────────────────────
@@ -252,9 +333,12 @@ async function runAudit(auditId, siteUrl) {
     }
   }
 
-  // ── Calcul du score ───────────────────────────────────────────────────────
-  const { score, breakdown } = calculateSeoScore(crawlResult);
-  log(auditId, `Score SEO calculé : ${score}/100`);
+  // ── Calcul des scores ─────────────────────────────────────────────────────
+  const { score: scoreTechnique, breakdown }         = calculateSeoScore(crawlResult);
+  const { score: scoreDomaine,   breakdown: domainBreakdown } = calculateDomainScore(crawlResult);
+  const scoreGlobal = Math.round(scoreTechnique * 0.6 + scoreDomaine * 0.4);
+
+  log(auditId, `Scores — global: ${scoreGlobal}, technique: ${scoreTechnique}, domaine: ${scoreDomaine}`);
 
   // Vitesse moyenne (pages sans erreur de fetch uniquement)
   const validPages = crawlResult.pages.filter(p => p.elapsed_ms != null && !p.error);
@@ -272,14 +356,23 @@ async function runAudit(auditId, siteUrl) {
   await prisma.auditResult.update({
     where: { id: auditId },
     data: {
-      score,
+      score:              scoreGlobal,
       statut:             'termine',
       vitesse_ms:         vitesseMoy,
       balises_manquantes: JSON.stringify(balisesManquantes),
       liens_morts:        JSON.stringify(crawlResult.dead_links),
-      // details stocke les données brutes pour l'affichage UI détaillé
       details: JSON.stringify({
+        scores: {
+          global:    scoreGlobal,
+          technique: scoreTechnique,
+          domaine:   scoreDomaine,
+        },
         breakdown,
+        domain_breakdown: domainBreakdown,
+        domain:      crawlResult.domain,
+        ssl:         crawlResult.ssl,
+        dns:         crawlResult.dns,
+        server:      crawlResult.server,
         crawl_stats: crawlResult.crawl_stats,
         pages:       crawlResult.pages,
       }),
@@ -288,6 +381,18 @@ async function runAudit(auditId, siteUrl) {
   }).catch(dbErr => log(auditId, `Erreur DB (termine) : ${dbErr.message}`));
 
   log(auditId, 'Audit terminé avec succès.');
+
+  // Génération automatique des recommandations (RG-04)
+  try {
+    const { siteId } = await prisma.auditResult.findUnique({
+      where:  { id: auditId },
+      select: { siteId: true },
+    });
+    const result = await generateRecommandations(siteId);
+    log(auditId, `Recommandations : ${result.created} créée(s), ${result.skipped} dédupliquée(s).`);
+  } catch (recoErr) {
+    log(auditId, `Erreur génération recos : ${recoErr.message}`);
+  }
 }
 
-module.exports = { runAudit, calculateSeoScore };
+module.exports = { runAudit, calculateSeoScore, calculateDomainScore };

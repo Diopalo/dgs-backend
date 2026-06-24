@@ -1,0 +1,94 @@
+[2026-06-24 17:35:55] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-24 17:35:55] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-24 17:36:08] [[32minfo[39m] [dgs-seo-api] GET /health — 200 — 12ms {"method":"GET","path":"/health","status":200,"duration_ms":12,"ip":"::1"}
+[2026-06-24 17:36:08] [[32minfo[39m] [dgs-seo-api] GET /api/docs/ — 200 — 3ms {"method":"GET","path":"/api/docs/","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-24 17:36:08] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/auth/connexion","statusCode":400}
+[2026-06-24 17:36:08] [[33mwarn[39m] [dgs-seo-api] POST /api/auth/connexion — 400 — 19ms {"method":"POST","path":"/api/auth/connexion","status":400,"duration_ms":19,"ip":"::1"}
+[2026-06-24 17:36:08] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/sites","statusCode":401}
+[2026-06-24 17:36:08] [[33mwarn[39m] [dgs-seo-api] GET /api/sites — 401 — 4ms {"method":"GET","path":"/api/sites","status":401,"duration_ms":4,"ip":"::1"}
+[2026-06-24 17:36:25] [[32minfo[39m] [dgs-seo-api] Nouvel utilisateur créé {"userId":7,"email":"admin@dgs.sn"}
+[2026-06-24 17:36:25] [[32minfo[39m] [dgs-seo-api] POST /api/auth/inscription — 201 — 148ms {"method":"POST","path":"/api/auth/inscription","status":201,"duration_ms":148,"ip":"::1"}
+[2026-06-24 17:36:25] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":7}
+[2026-06-24 17:36:25] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 105ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":105,"ip":"::1"}
+[2026-06-24 17:36:25] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 16ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":16,"ip":"::1"}
+[2026-06-24 17:36:25] [[33mwarn[39m] [dgs-seo-api] [FORBIDDEN_ROLE] Accès réservé aux rôles : ADMIN. {"path":"/api/sites","statusCode":403}
+[2026-06-24 17:36:25] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 403 — 3ms {"method":"POST","path":"/api/sites","status":403,"duration_ms":3,"ip":"::1"}
+[2026-06-24 17:36:25] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : POST /api/sites//audits {"path":"/api/sites//audits","statusCode":404}
+[2026-06-24 17:36:25] [[33mwarn[39m] [dgs-seo-api] POST /api/sites//audits — 404 — 3ms {"method":"POST","path":"/api/sites//audits","status":404,"duration_ms":3,"ip":"::1"}
+[2026-06-24 17:36:53] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":7}
+[2026-06-24 17:36:53] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 120ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":120,"ip":"::1"}
+[2026-06-24 17:36:53] [[33mwarn[39m] [dgs-seo-api] [SITE_ALREADY_EXISTS] Ce site existe déjà. {"path":"/api/sites","statusCode":409}
+[2026-06-24 17:36:53] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 409 — 92ms {"method":"POST","path":"/api/sites","status":409,"duration_ms":92,"ip":"::1"}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":7}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 121ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":121,"ip":"::1"}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 200 — 9ms {"method":"GET","path":"/api/sites","status":200,"duration_ms":9,"ip":"::1"}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] [Audit #12] Démarrage du crawl → https://quotes.toscrape.com {"auditId":12}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] [Audit #12] Config : max_pages=500, delay=500ms, workers=5 {"auditId":12}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] [Audit #12] Tentative 1/2 — crawl en cours… {"auditId":12}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":12,"siteId":10,"url":"https://quotes.toscrape.com"}
+[2026-06-24 17:37:06] [[32minfo[39m] [dgs-seo-api] POST /api/sites/10/audits — 202 — 112ms {"method":"POST","path":"/api/sites/10/audits","status":202,"duration_ms":112,"ip":"::1"}
+[2026-06-24 17:37:07] [[32minfo[39m] [dgs-seo-api] GET /api/sites/10/dashboard — 200 — 13ms {"method":"GET","path":"/api/sites/10/dashboard","status":200,"duration_ms":13,"ip":"::1"}
+[2026-06-24 17:37:13] [[32minfo[39m] [dgs-seo-api] Signal SIGTERM reçu — arrêt gracieux…
+[2026-06-24 17:37:13] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-24 18:07:02] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-24 18:07:02] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-24 18:07:08] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/health {"path":"/api/health","statusCode":404}
+[2026-06-24 18:07:08] [[33mwarn[39m] [dgs-seo-api] GET /api/health — 404 — 28ms {"method":"GET","path":"/api/health","status":404,"duration_ms":28,"ip":"::1"}
+[2026-06-24 18:08:12] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":8}
+[2026-06-24 18:08:12] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 407ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":407,"ip":"::1"}
+[2026-06-24 18:08:20] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 117ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":117,"ip":"::1"}
+[2026-06-24 18:08:28] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 124ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":124,"ip":"::1"}
+[2026-06-24 18:08:37] [[32minfo[39m] [dgs-seo-api] Site créé {"siteId":11,"url":"https://seneweb.com"}
+[2026-06-24 18:08:37] [[32minfo[39m] [dgs-seo-api] POST /api/sites — 201 — 138ms {"method":"POST","path":"/api/sites","status":201,"duration_ms":138,"ip":"::1"}
+[2026-06-24 18:08:47] [[32minfo[39m] [dgs-seo-api] [Audit #13] Démarrage du crawl → https://seneweb.com {"auditId":13}
+[2026-06-24 18:08:47] [[32minfo[39m] [dgs-seo-api] [Audit #13] Config : max_pages=500, delay=500ms, workers=5 {"auditId":13}
+[2026-06-24 18:08:47] [[32minfo[39m] [dgs-seo-api] [Audit #13] Tentative 1/2 — crawl en cours… {"auditId":13}
+[2026-06-24 18:08:47] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":13,"siteId":11,"url":"https://seneweb.com"}
+[2026-06-24 18:08:47] [[32minfo[39m] [dgs-seo-api] POST /api/sites/11/audits — 202 — 147ms {"method":"POST","path":"/api/sites/11/audits","status":202,"duration_ms":147,"ip":"::1"}
+[2026-06-24 18:10:11] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 9ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":9,"ip":"::1"}
+[2026-06-24 18:10:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:10:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:10:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 7ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":7,"ip":"::1"}
+[2026-06-24 18:11:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:11:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:11:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:11:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:12:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:12:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:12:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 8ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":8,"ip":"::1"}
+[2026-06-24 18:12:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 7ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":7,"ip":"::1"}
+[2026-06-24 18:13:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:13:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:13:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 4ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-24 18:13:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:14:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:14:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 3ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-24 18:14:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 4ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-24 18:14:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:15:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:15:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:15:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:15:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 6ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":6,"ip":"::1"}
+[2026-06-24 18:16:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 3ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-24 18:16:28] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 3ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-24 18:16:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:16:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 4ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-24 18:17:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:17:28] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 5ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-24 18:17:40] [[32minfo[39m] [dgs-seo-api] [Audit #13] Crawl OK (tentative 1) : 500 pages, 14 erreur(s), 528287 ms {"auditId":13}
+[2026-06-24 18:17:40] [[32minfo[39m] [dgs-seo-api] [Audit #13] Scores — global: 79, technique: 65, domaine: 100 {"auditId":13}
+[2026-06-24 18:17:41] [[32minfo[39m] [dgs-seo-api] [Audit #13] Audit terminé avec succès. {"auditId":13}
+[2026-06-24 18:17:41] [[32minfo[39m] [dgs-seo-api] [Audit #13] Recommandations : 4 créée(s), 0 dédupliquée(s). {"auditId":13}
+[2026-06-24 18:17:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 81ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":81,"ip":"::1"}
+[2026-06-24 18:18:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 107ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":107,"ip":"::1"}
+[2026-06-24 18:26:11] [[32minfo[39m] [dgs-seo-api] Signal SIGTERM reçu — arrêt gracieux…
+[2026-06-24 18:26:11] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-24 18:26:14] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-24 18:26:14] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-24 18:27:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 136ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":136,"ip":"::1"}
+[2026-06-24 18:27:53] [[33mwarn[39m] [dgs-seo-api] Position Google non disponible {"keywordId":99,"expression":"seo senegal","reason":"Aucune API de positionnement configurée"}
+[2026-06-24 18:28:24] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : POST /api/sites/11/keywords {"path":"/api/sites/11/keywords","statusCode":404}
+[2026-06-24 18:28:24] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/11/keywords — 404 — 7ms {"method":"POST","path":"/api/sites/11/keywords","status":404,"duration_ms":7,"ip":"::1"}
+[2026-06-24 18:30:38] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/routes {"path":"/api/routes","statusCode":404}
+[2026-06-24 18:30:38] [[33mwarn[39m] [dgs-seo-api] GET /api/routes — 404 — 4ms {"method":"GET","path":"/api/routes","status":404,"duration_ms":4,"ip":"::1"}
+[2026-06-24 18:31:02] [[32minfo[39m] [dgs-seo-api] POST /api/sites/11/mots-cles — 201 — 28ms {"method":"POST","path":"/api/sites/11/mots-cles","status":201,"duration_ms":28,"ip":"::1"}

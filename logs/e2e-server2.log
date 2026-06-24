@@ -1,0 +1,9 @@
+◇ injected env (6) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[2026-06-24 18:26:14] [[32m[32minfo[32m[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-24 18:26:14] [[32m[32minfo[32m[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-24 18:27:12] [[32m[32minfo[32m[39m] [dgs-seo-api] GET /api/sites/11/audits/13 — 200 — 136ms {"method":"GET","path":"/api/sites/11/audits/13","status":200,"duration_ms":136,"ip":"::1"}
+[2026-06-24 18:28:24] [[33m[33mwarn[33m[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : POST /api/sites/11/keywords {"path":"/api/sites/11/keywords","statusCode":404}
+[2026-06-24 18:28:24] [[33m[33mwarn[33m[39m] [dgs-seo-api] POST /api/sites/11/keywords — 404 — 7ms {"method":"POST","path":"/api/sites/11/keywords","status":404,"duration_ms":7,"ip":"::1"}
+[2026-06-24 18:30:38] [[33m[33mwarn[33m[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/routes {"path":"/api/routes","statusCode":404}
+[2026-06-24 18:30:38] [[33m[33mwarn[33m[39m] [dgs-seo-api] GET /api/routes — 404 — 4ms {"method":"GET","path":"/api/routes","status":404,"duration_ms":4,"ip":"::1"}
+[2026-06-24 18:31:02] [[32m[32minfo[32m[39m] [dgs-seo-api] POST /api/sites/11/mots-cles — 201 — 28ms {"method":"POST","path":"/api/sites/11/mots-cles","status":201,"duration_ms":28,"ip":"::1"}

@@ -1,319 +1,150 @@
-const prisma = require("../configuration/prismaClient");
+'use strict';
+
+const prisma   = require('../configuration/prismaClient');
+const logger   = require('../utils/logger');
 const { runAudit } = require('../services/auditRunner');
+const { NotFoundError, ConflictError } = require('../utils/errors');
+const { parsePaginationParams, buildPaginationMeta, applyPagination, buildNextCursor } = require('../utils/pagination');
 
-// Créer un site
-const createSite = async (req, res) => {
-    try {
-        const { nom, url, projetId } = req.body;
+// GET /api/sites
+const getSites = async (req, res, next) => {
+  try {
+    const params = parsePaginationParams(req.query);
+    const pq     = applyPagination(params);
 
-        if (!nom || !url || !projetId) {
-            return res.status(400).json({
-                success: false,
-                message: "Le nom, l'URL et l'id du projet sont obligatoires."
-            });
-        }
+    const [total, sites] = await Promise.all([
+      prisma.site.count(),
+      prisma.site.findMany({
+        include: { projet: { select: { id: true, nom: true } } },
+        orderBy: { createdAt: 'desc' },
+        ...pq,
+      }),
+    ]);
 
-        const projet = await prisma.projet.findUnique({
-            where: { id: Number(projetId) }
-        });
+    const meta = buildPaginationMeta(total, params);
+    meta.nextCursor = buildNextCursor(sites);
 
-        if (!projet) {
-            return res.status(404).json({
-                success: false,
-                message: "Projet introuvable."
-            });
-        }
-
-        const siteExistant = await prisma.site.findUnique({
-            where: { url }
-        });
-
-        if (siteExistant) {
-            return res.status(409).json({
-                success: false,
-                message: "Ce site existe déjà."
-            });
-        }
-
-        const site = await prisma.site.create({
-            data: {
-                nom,
-                url,
-                projetId: Number(projetId)
-            }
-        });
-
-        return res.status(201).json({
-            success: true,
-            message: "Site créé avec succès.",
-            data: site
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la création du site."
-        });
-    }
+    res.json({ status: 'success', data: sites, pagination: meta });
+  } catch (err) { next(err); }
 };
 
-// Récupération de tous les sites
-const getSites = async (req, res) => {
-    try {
-        const sites = await prisma.site.findMany({
-            include: {
-                projet: true
-            },
-            orderBy: {
-                createdAt: "desc"
-            }
-        });
-
-        return res.status(200).json({
-            success: true,
-            total: sites.length,
-            data: sites
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la récupération des sites."
-        });
-    }
+// GET /api/sites/:id
+const getSiteById = async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const site = await prisma.site.findUnique({
+      where:   { id },
+      include: { projet: true, keywords: true, auditResults: { orderBy: { crawledAt: 'desc' }, take: 5 } },
+    });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
+    res.json({ status: 'success', data: site });
+  } catch (err) { next(err); }
 };
 
-// Récupération d'un site par ID
-const getSiteById = async (req, res) => {
-    try {
-        const id = Number(req.params.id);
+// POST /api/sites
+const createSite = async (req, res, next) => {
+  try {
+    const { nom, url, projetId } = req.body;
 
-        if (isNaN(id)) {
-            return res.status(400).json({
-                success: false,
-                message: "ID invalide."
-            });
-        }
+    const projet = await prisma.projet.findUnique({ where: { id: projetId } });
+    if (!projet) return next(new NotFoundError('Projet introuvable.', 'PROJET_NOT_FOUND'));
 
-        const site = await prisma.site.findUnique({
-            where: { id },
-            include: {
-                projet: true,
-                keywords: true,
-                auditResults: true
-            }
-        });
+    const existing = await prisma.site.findUnique({ where: { url } });
+    if (existing) return next(new ConflictError('Ce site existe déjà.', 'SITE_ALREADY_EXISTS'));
 
-        if (!site) {
-            return res.status(404).json({
-                success: false,
-                message: "Site introuvable."
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            data: site
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la récupération du site."
-        });
-    }
+    const site = await prisma.site.create({ data: { nom, url, projetId } });
+    logger.info('Site créé', { siteId: site.id, url });
+    res.status(201).json({ status: 'success', data: site });
+  } catch (err) { next(err); }
 };
 
-// Modification d'un site
-async function updateSite(req, res) {
-    try {
-        const id = Number(req.params.id);
+// PUT /api/sites/:id
+const updateSite = async (req, res, next) => {
+  try {
+    const id   = Number(req.params.id);
+    const site = await prisma.site.findUnique({ where: { id } });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
 
-        if (isNaN(id)) {
-            return res.status(400).json({
-                success: false,
-                message: "ID invalide."
-            });
-        }
-
-        const { nom, url } = req.body;
-
-        const site = await prisma.site.findUnique({
-            where: { id }
-        });
-
-        if (!site) {
-            return res.status(404).json({
-                success: false,
-                message: "Site introuvable."
-            });
-        }
-
-        const siteModifie = await prisma.site.update({
-            where: { id },
-            data: {
-                nom: nom ?? site.nom,
-                url: url ?? site.url
-            }
-        });
-
-        return res.status(200).json({
-            success: true,
-            message: "Site modifié avec succès.",
-            data: siteModifie
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la modification du site."
-        });
-    }
-}
-
-// Suppression d'un site
-async function deleteSite(req, res) {
-    try {
-        const id = Number(req.params.id);
-
-        if (isNaN(id)) {
-            return res.status(400).json({
-                success: false,
-                message: "ID invalide."
-            });
-        }
-
-        const site = await prisma.site.findUnique({
-            where: { id }
-        });
-
-        if (!site) {
-            return res.status(404).json({
-                success: false,
-                message: "Site introuvable."
-            });
-        }
-
-        await prisma.site.delete({
-            where: { id }
-        });
-
-        return res.status(200).json({
-            success: true,
-            message: "Site supprimé avec succès."
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la suppression du site."
-        });
-    }
-}
-
-// Lancer un audit
-async function launchAudit(req, res) {
-    try {
-        const id = Number(req.params.id);
-
-        if (isNaN(id)) {
-            return res.status(400).json({
-                success: false,
-                message: "ID invalide."
-            });
-        }
-
-        const site = await prisma.site.findUnique({
-            where: { id }
-        });
-
-        if (!site) {
-            return res.status(404).json({
-                success: false,
-                message: "Site introuvable."
-            });
-        }
-
-        const audit = await prisma.auditResult.create({
-            data: {
-                score: 0,
-                details: JSON.stringify({ statut: "en_cours" }),
-                siteId: id
-            }
-        });
-
-        runAudit(audit.id, site.url);
-
-        return res.status(202).json({
-            success: true,
-            message: "Audit lancé.",
-            auditId: audit.id
-        });
-
-    } catch (err) {
-        console.error(err);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors du lancement de l'audit.",
-            error: err.message
-        });
-    }
-}
-
-// Historique des audits d'un site
-async function listAudits(req, res) {
-    try {
-        const id = Number(req.params.id);
-
-        if (isNaN(id)) {
-            return res.status(400).json({
-                success: false,
-                message: "ID invalide."
-            });
-        }
-
-        const audits = await prisma.auditResult.findMany({
-            where: {
-                siteId: id
-            },
-            orderBy: {
-                crawledAt: "desc"
-            }
-        });
-
-        return res.status(200).json({
-            success: true,
-            data: audits
-        });
-
-    } catch (err) {
-        console.error(err);
-
-        return res.status(500).json({
-            success: false,
-            message: "Erreur serveur.",
-            error: err.message
-        });
-    }
-}
-
-module.exports = {
-    createSite,
-    getSites,
-    getSiteById,
-    updateSite,
-    deleteSite,
-    launchAudit,
-    listAudits
+    const { nom, url } = req.body;
+    const updated = await prisma.site.update({
+      where: { id },
+      data:  { nom: nom ?? site.nom, url: url ?? site.url },
+    });
+    res.json({ status: 'success', data: updated });
+  } catch (err) { next(err); }
 };
+
+// DELETE /api/sites/:id
+const deleteSite = async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const site = await prisma.site.findUnique({ where: { id } });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
+
+    await prisma.site.delete({ where: { id } });
+    logger.info('Site supprimé', { siteId: id });
+    res.json({ status: 'success', message: 'Site supprimé.' });
+  } catch (err) { next(err); }
+};
+
+// POST /api/sites/:id/audits
+const launchAudit = async (req, res, next) => {
+  try {
+    const id   = Number(req.params.id);
+    const site = await prisma.site.findUnique({ where: { id } });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
+
+    const audit = await prisma.auditResult.create({
+      data: { score: 0, statut: 'en_cours', siteId: id },
+    });
+
+    runAudit(audit.id, site.url);
+    logger.info('Audit lancé', { auditId: audit.id, siteId: id, url: site.url });
+
+    res.status(202).json({ status: 'success', message: 'Audit lancé.', data: { auditId: audit.id } });
+  } catch (err) { next(err); }
+};
+
+// GET /api/sites/:id/audits/:auditId
+const getAuditById = async (req, res, next) => {
+  try {
+    const siteId  = Number(req.params.id);
+    const auditId = Number(req.params.auditId);
+
+    const site = await prisma.site.findUnique({ where: { id: siteId }, select: { id: true } });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
+
+    const audit = await prisma.auditResult.findFirst({ where: { id: auditId, siteId } });
+    if (!audit) return next(new NotFoundError('Audit introuvable.', 'AUDIT_NOT_FOUND'));
+
+    const details   = audit.details     ? JSON.parse(audit.details)     : null;
+    const deadLinks = audit.liens_morts ? JSON.parse(audit.liens_morts) : [];
+    if (details) details.dead_links = deadLinks;
+
+    res.json({ status: 'success', data: { ...audit, details } });
+  } catch (err) { next(err); }
+};
+
+// GET /api/sites/:id/audits
+const listAudits = async (req, res, next) => {
+  try {
+    const id     = Number(req.params.id);
+    const site   = await prisma.site.findUnique({ where: { id }, select: { id: true } });
+    if (!site) return next(new NotFoundError('Site introuvable.', 'SITE_NOT_FOUND'));
+
+    const params = parsePaginationParams(req.query);
+    const pq     = applyPagination(params);
+
+    const [total, audits] = await Promise.all([
+      prisma.auditResult.count({ where: { siteId: id } }),
+      prisma.auditResult.findMany({ where: { siteId: id }, orderBy: { crawledAt: 'desc' }, ...pq }),
+    ]);
+
+    const meta = buildPaginationMeta(total, params);
+    meta.nextCursor = buildNextCursor(audits);
+
+    res.json({ status: 'success', data: audits, pagination: meta });
+  } catch (err) { next(err); }
+};
+
+module.exports = { getSites, getSiteById, createSite, updateSite, deleteSite, launchAudit, listAudits, getAuditById };

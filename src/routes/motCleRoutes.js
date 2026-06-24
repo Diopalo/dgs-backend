@@ -1,24 +1,35 @@
 'use strict';
 
-const express = require('express');
-const router  = express.Router();
+const express  = require('express');
+const router   = express.Router();
+const auth     = require('../middlewares/auth');
+const roles    = require('../middlewares/roles');
+const validate = require('../middlewares/validate');
+const { createKeyword, updateKeyword } = require('../schemas/keywordSchemas');
+const { listMotsCles, createMotCle, updateMotCle, deleteMotCle, statsMotsCles } = require('../controleurs/motCleControleur');
+const { measureAllKeywords } = require('../services/positionService');
+const { NotFoundError } = require('../utils/errors');
 
-const authentification  = require('../middlewareJWT/authentification');
-const autorisationRole  = require('../middlewareJWT/authRoles');
+/**
+ * @swagger
+ * tags:
+ *   name: Mots-clés
+ *   description: Gestion des mots-clés SEO et positions
+ */
 
-const {
-  listMotsCles,
-  createMotCle,
-  updateMotCle,
-  deleteMotCle,
-  statsMotsCles,
-} = require('../controleurs/motCleControleur');
+// Statiques avant /:id
+router.get( '/:siteId/mots-cles/stats',   auth, statsMotsCles);
+router.post('/:siteId/mots-cles/mesurer', auth, roles('ADMIN', 'ANALYSTE'), async (req, res, next) => {
+  try {
+    const siteId = Number(req.params.siteId);
+    const result = await measureAllKeywords(siteId);
+    res.json({ status: 'success', data: result });
+  } catch (err) { next(err); }
+});
 
-// IMPORTANT : /stats avant /:id pour éviter que "stats" soit capturé comme param
-router.get( '/:siteId/mots-cles/stats', authentification, statsMotsCles);
-router.get( '/:siteId/mots-cles',       authentification, listMotsCles);
-router.post('/:siteId/mots-cles',       authentification, autorisationRole('ADMIN', 'ANALYSTE'), createMotCle);
-router.put( '/:siteId/mots-cles/:id',   authentification, autorisationRole('ADMIN', 'ANALYSTE'), updateMotCle);
-router.delete('/:siteId/mots-cles/:id', authentification, autorisationRole('ADMIN'), deleteMotCle);
+router.get( '/:siteId/mots-cles',       auth, listMotsCles);
+router.post('/:siteId/mots-cles',       auth, roles('ADMIN', 'ANALYSTE'), validate(createKeyword), createMotCle);
+router.put( '/:siteId/mots-cles/:id',   auth, roles('ADMIN', 'ANALYSTE'), validate(updateKeyword), updateMotCle);
+router.delete('/:siteId/mots-cles/:id', auth, roles('ADMIN'), deleteMotCle);
 
 module.exports = router;

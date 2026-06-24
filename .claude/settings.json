@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import whois; print\\('whois OK'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python3 src/crawler/audit.py https://books.toscrape.com --max-pages 3 --delay-ms 100)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 src/crawler/audit.py https://books.toscrape.com --max-pages 1 --delay-ms 100)",
+      "Bash(python3 src/crawler/audit.py https://books.toscrape.com --max-pages 5 --delay-ms 100)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s http://localhost:3000/api/health)",
+      "Bash(node serveur.js)",
+      "Bash(echo \"PID=$!\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth/connexion -H 'Content-Type: application/json' -d '{\"email\":\"e2e@dgs.sn\",\"password\":\"E2eTest2026!\"}')",
+      "Bash(awk '{print \"PID=\"$2, \"CPU=\"$3\"%\", \"MEM=\"$4\"%\", \"TIME=\"$10}')"
+    ]
+  }
+}

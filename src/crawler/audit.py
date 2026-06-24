@@ -22,6 +22,13 @@ from collections import deque
 from urllib.parse import urljoin, urlparse, urldefrag
 from urllib.robotparser import RobotFileParser
 
+import ssl
+import socket
+import whois
+import dns.resolver
+import requests
+from datetime import datetime
+
 import aiohttp
 from bs4 import BeautifulSoup
 
@@ -50,10 +57,13 @@ def normalize_url(url: str) -> str:
 
 def is_internal(url: str, base_netloc: str) -> bool:
     """Considère comme interne tout lien partageant le même domaine racine.
-    Exemple : 'en.wikipedia.org' est interne à 'wikipedia.org'.
+    Traite www.site.com et site.com comme identiques (même domaine).
     """
     link_netloc = urlparse(url).netloc
-    return link_netloc == base_netloc or link_netloc.endswith("." + base_netloc)
+    # Normaliser www pour les deux côtés avant comparaison
+    link_root = link_netloc[4:] if link_netloc.startswith("www.") else link_netloc
+    base_root = base_netloc[4:] if base_netloc.startswith("www.") else base_netloc
+    return link_root == base_root or link_root.endswith("." + base_root)
 
 
 def is_http(url: str) -> bool:
@@ -334,6 +344,130 @@ async def run_crawl(
     }
 
 
+# ── Collecte d'informations domaine / SSL / DNS / serveur ────────────────────
+
+def _naive(dt):
+    """Supprime l'info timezone pour rendre deux datetimes comparables."""
+    if dt is None:
+        return None
+    return dt.replace(tzinfo=None) if getattr(dt, 'tzinfo', None) else dt
+
+
+def collect_domain_info(domain):
+    result = {
+        "age_days": None,
+        "created_at": None,
+        "expires_at": None,
+        "expires_in_days": None,
+        "registrar": None,
+    }
+    try:
+        # WHOIS sur le domaine racine (ex: toscrape.com, pas books.toscrape.com)
+        parts = domain.split(".")
+        root_domain = ".".join(parts[-2:]) if len(parts) > 2 else domain
+        w = whois.whois(root_domain)
+        created = w.creation_date
+        expires = w.expiration_date
+        if isinstance(created, list): created = created[0]
+        if isinstance(expires, list): expires = expires[0]
+        created = _naive(created)
+        expires = _naive(expires)
+        now = datetime.now()
+        if created:
+            result["created_at"] = created.strftime("%Y-%m-%d")
+            result["age_days"] = (now - created).days
+        if expires:
+            result["expires_at"] = expires.strftime("%Y-%m-%d")
+            result["expires_in_days"] = (expires - now).days
+        result["registrar"] = w.registrar
+    except Exception as e:
+        result["error"] = str(e)
+    return result
+
+
+def collect_ssl_info(domain):
+    result = {
+        "valid": False,
+        "expires_at": None,
+        "expires_in_days": None,
+        "issuer": None,
+        "warning": False,
+    }
+    try:
+        ctx = ssl.create_default_context()
+        with ctx.wrap_socket(socket.socket(), server_hostname=domain) as s:
+            s.settimeout(10)
+            s.connect((domain, 443))
+            cert = s.getpeercert()
+        expires = datetime.strptime(cert["notAfter"], "%b %d %H:%M:%S %Y %Z")
+        days_left = (expires - datetime.utcnow()).days
+        issuer = dict(x[0] for x in cert["issuer"])
+        result["valid"] = True
+        result["expires_at"] = expires.strftime("%Y-%m-%d")
+        result["expires_in_days"] = days_left
+        result["issuer"] = issuer.get("organizationName", "Inconnu")
+        result["warning"] = days_left < 30
+    except Exception as e:
+        result["error"] = str(e)
+    return result
+
+
+def collect_dns_info(domain):
+    result = {
+        "ip": None,
+        "nameservers": [],
+        "mx_records": [],
+        "txt_records": [],
+        "has_google_verification": False,
+    }
+    try:
+        answers = dns.resolver.resolve(domain, "A")
+        result["ip"] = str(answers[0])
+    except Exception:
+        pass
+    try:
+        ns = dns.resolver.resolve(domain, "NS")
+        result["nameservers"] = [str(r) for r in ns]
+    except Exception:
+        pass
+    try:
+        mx = dns.resolver.resolve(domain, "MX")
+        result["mx_records"] = [str(r.exchange) for r in mx]
+    except Exception:
+        pass
+    try:
+        txt = dns.resolver.resolve(domain, "TXT")
+        records = [str(r) for r in txt]
+        result["txt_records"] = records
+        result["has_google_verification"] = any(
+            "google-site-verification" in r for r in records
+        )
+    except Exception:
+        pass
+    return result
+
+
+def collect_server_info(url, session):
+    result = {
+        "software": None,
+        "compression": False,
+        "http2": False,
+        "ttfb_ms": None,
+        "https": url.startswith("https"),
+    }
+    try:
+        import time
+        start = time.time()
+        resp = session.get(url, timeout=10)
+        result["ttfb_ms"] = round((time.time() - start) * 1000)
+        result["software"] = resp.headers.get("Server")
+        result["compression"] = "gzip" in resp.headers.get("Content-Encoding", "")
+        result["https"] = resp.url.startswith("https")
+    except Exception as e:
+        result["error"] = str(e)
+    return result
+
+
 # ── Point d'entrée ────────────────────────────────────────────────────────────
 
 def parse_args() -> argparse.Namespace:
@@ -374,6 +508,18 @@ def main():
             delay_ms    = args.delay_ms,
             max_workers = args.max_workers,
         ))
+
+        parsed = urlparse(args.site_url)
+        domain = parsed.netloc.replace("www.", "")
+
+        session = requests.Session()
+        session.headers.update({"User-Agent": USER_AGENT})
+
+        result["domain"] = collect_domain_info(domain)
+        result["ssl"]    = collect_ssl_info(domain)
+        result["dns"]    = collect_dns_info(domain)
+        result["server"] = collect_server_info(args.site_url, session)
+
         print(json.dumps(result, ensure_ascii=False))
     except Exception as exc:
         print(json.dumps({"error": str(exc)}, ensure_ascii=False))
