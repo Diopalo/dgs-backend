@@ -92,3 +92,992 @@
 [2026-06-24 18:30:38] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/routes {"path":"/api/routes","statusCode":404}
 [2026-06-24 18:30:38] [[33mwarn[39m] [dgs-seo-api] GET /api/routes — 404 — 4ms {"method":"GET","path":"/api/routes","status":404,"duration_ms":4,"ip":"::1"}
 [2026-06-24 18:31:02] [[32minfo[39m] [dgs-seo-api] POST /api/sites/11/mots-cles — 201 — 28ms {"method":"POST","path":"/api/sites/11/mots-cles","status":201,"duration_ms":28,"ip":"::1"}
+[2026-06-25 09:41:29] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-25 09:41:29] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-25 09:45:27] [[33mwarn[39m] [dgs-seo-api] [INVALID_CREDENTIALS] Email ou mot de passe incorrect. {"path":"/api/auth/connexion","statusCode":401}
+[2026-06-25 09:45:27] [[33mwarn[39m] [dgs-seo-api] POST /api/auth/connexion — 401 — 63ms {"method":"POST","path":"/api/auth/connexion","status":401,"duration_ms":63,"ip":"::1"}
+[2026-06-25 09:45:48] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET / {"path":"/","statusCode":404}
+[2026-06-25 09:45:48] [[33mwarn[39m] [dgs-seo-api] GET / — 404 — 1ms {"method":"GET","path":"/","status":404,"duration_ms":1,"ip":"::1"}
+[2026-06-25 09:46:24] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-06-25 09:46:24] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-25 09:46:27] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-25 09:46:27] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-25 09:46:38] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET / {"path":"/","statusCode":404}
+[2026-06-25 09:46:38] [[33mwarn[39m] [dgs-seo-api] GET / — 404 — 5ms {"method":"GET","path":"/","status":404,"duration_ms":5,"ip":"::1"}
+[2026-06-25 09:47:22] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/auth/inscription","statusCode":400}
+[2026-06-25 09:47:22] [[33mwarn[39m] [dgs-seo-api] POST /api/auth/inscription — 400 — 9ms {"method":"POST","path":"/api/auth/inscription","status":400,"duration_ms":9,"ip":"::1"}
+[2026-06-25 09:47:33] [[32minfo[39m] [dgs-seo-api] Nouvel utilisateur créé {"userId":1,"email":"babacar@gmail.com"}
+[2026-06-25 09:47:33] [[32minfo[39m] [dgs-seo-api] POST /api/auth/inscription — 201 — 91ms {"method":"POST","path":"/api/auth/inscription","status":201,"duration_ms":91,"ip":"::1"}
+[2026-06-25 09:47:54] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-06-25 09:47:54] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 79ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":79,"ip":"::1"}
+[2026-06-25 09:50:24] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-06-25 09:50:24] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 70ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":70,"ip":"::1"}
+[2026-06-25 09:52:05] [[33mwarn[39m] [dgs-seo-api] [SITE_NOT_FOUND] Site introuvable. {"path":"/api/sites/1/dashboard","statusCode":404}
+[2026-06-25 09:52:05] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 404 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":404,"duration_ms":4,"ip":"::1"}
+[2026-06-25 09:52:58] [[33mwarn[39m] [dgs-seo-api] [TOKEN_INVALID] Token invalide ou expiré. {"path":"/api/projets","statusCode":401}
+[2026-06-25 09:52:58] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 1ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":1,"ip":"::1"}
+[2026-06-25 09:55:41] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 10ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":10,"ip":"::1"}
+[2026-06-25 09:55:59] [[32minfo[39m] [dgs-seo-api] Site créé {"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 09:55:59] [[32minfo[39m] [dgs-seo-api] POST /api/sites — 201 — 13ms {"method":"POST","path":"/api/sites","status":201,"duration_ms":13,"ip":"::1"}
+[2026-06-25 09:56:18] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/mots-cles — 201 — 9ms {"method":"POST","path":"/api/sites/1/mots-cles","status":201,"duration_ms":9,"ip":"::1"}
+[2026-06-25 09:56:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 200 — 14ms {"method":"GET","path":"/api/sites/1/mots-cles","status":200,"duration_ms":14,"ip":"::1"}
+[2026-06-25 09:56:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles/stats — 200 — 4ms {"method":"GET","path":"/api/sites/1/mots-cles/stats","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-25 09:56:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":5,"ip":"::1"}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Démarrage du crawl → https://dgsafrica.com {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Config : max_pages=500, delay=500ms, workers=5 {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Tentative 1/2 — crawl en cours… {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":1,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 19ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":19,"ip":"::1"}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Tentative 1/2 échouée : spawn python3 ENOENT {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Tentative 2/2 — crawl en cours… {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Tentative 2/2 échouée : spawn python3 ENOENT {"auditId":1}
+[2026-06-25 09:58:45] [[32minfo[39m] [dgs-seo-api] [Audit #1] Audit marqué en échec définitif. {"auditId":1}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Démarrage du crawl → https://dgsafrica.com {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Config : max_pages=500, delay=500ms, workers=5 {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Tentative 1/2 — crawl en cours… {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":2,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 10ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":10,"ip":"::1"}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Tentative 1/2 échouée : spawn python3 ENOENT {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Tentative 2/2 — crawl en cours… {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Tentative 2/2 échouée : spawn python3 ENOENT {"auditId":2}
+[2026-06-25 10:09:15] [[32minfo[39m] [dgs-seo-api] [Audit #2] Audit marqué en échec définitif. {"auditId":2}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Démarrage du crawl → https://dgsafrica.com {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Config : max_pages=500, delay=500ms, workers=5 {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Tentative 1/2 — crawl en cours… {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":3,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 15ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":15,"ip":"::1"}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Tentative 1/2 échouée : spawn python3 ENOENT {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Tentative 2/2 — crawl en cours… {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Tentative 2/2 échouée : spawn python3 ENOENT {"auditId":3}
+[2026-06-25 10:10:07] [[32minfo[39m] [dgs-seo-api] [Audit #3] Audit marqué en échec définitif. {"auditId":3}
+[2026-06-25 10:10:49] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-06-25 10:10:49] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-25 10:10:52] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-25 10:10:52] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Démarrage du crawl → https://dgsafrica.com {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Config : max_pages=500, delay=500ms, workers=5 {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Tentative 1/2 — crawl en cours… {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":4,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 35ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":35,"ip":"::1"}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Tentative 1/2 échouée : Traceback (most recent call last):
+  File "C:\Users\Babacar\Documents\dgs-backend\src\crawler\audit.py", line 27, in <module>
+    import whois
+ModuleNotFoundError: No module named 'whois' {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Tentative 2/2 — crawl en cours… {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Tentative 2/2 échouée : Traceback (most recent call last):
+  File "C:\Users\Babacar\Documents\dgs-backend\src\crawler\audit.py", line 27, in <module>
+    import whois
+ModuleNotFoundError: No module named 'whois' {"auditId":4}
+[2026-06-25 10:10:56] [[32minfo[39m] [dgs-seo-api] [Audit #4] Audit marqué en échec définitif. {"auditId":4}
+[2026-06-25 10:14:42] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-06-25 10:14:42] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-25 10:14:44] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-25 10:14:44] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-25 10:14:50] [[32minfo[39m] [dgs-seo-api] [Audit #5] Démarrage du crawl → https://dgsafrica.com {"auditId":5}
+[2026-06-25 10:14:50] [[32minfo[39m] [dgs-seo-api] [Audit #5] Config : max_pages=500, delay=500ms, workers=5 {"auditId":5}
+[2026-06-25 10:14:50] [[32minfo[39m] [dgs-seo-api] [Audit #5] Tentative 1/2 — crawl en cours… {"auditId":5}
+[2026-06-25 10:14:50] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":5,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-06-25 10:14:50] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 39ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":39,"ip":"::1"}
+[2026-06-25 10:14:55] [[32minfo[39m] [dgs-seo-api] [Audit #5] Crawl OK (tentative 1) : 1 pages, 0 erreur(s), 1271 ms {"auditId":5}
+[2026-06-25 10:14:55] [[32minfo[39m] [dgs-seo-api] [Audit #5] Scores — global: 81, technique: 82, domaine: 80 {"auditId":5}
+[2026-06-25 10:14:55] [[32minfo[39m] [dgs-seo-api] [Audit #5] Audit terminé avec succès. {"auditId":5}
+[2026-06-25 10:14:55] [[32minfo[39m] [dgs-seo-api] [Audit #5] Recommandations : 3 créée(s), 0 dédupliquée(s). {"auditId":5}
+[2026-06-25 10:15:49] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/audits — 200 — 4ms {"method":"GET","path":"/api/sites/1/audits","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-25 10:17:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":8,"ip":"::1"}
+[2026-06-25 10:19:02] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 3ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-25 10:25:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-25 10:30:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?type=TECHNIQUE — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?type=TECHNIQUE","status":200,"duration_ms":2,"ip":"::1"}
+[2026-06-25 10:31:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?type=CONTENU — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?type=CONTENU","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-25 10:32:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?type=MOTS_CLES — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?type=MOTS_CLES","status":200,"duration_ms":2,"ip":"::1"}
+[2026-06-25 10:44:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?tpriorite=HAUTE — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?tpriorite=HAUTE","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-25 10:46:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?tpriorite=MOYENNE — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?tpriorite=MOYENNE","status":200,"duration_ms":2,"ip":"::1"}
+[2026-06-25 10:46:40] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?tpriorite=BASSE — 200 — 1ms {"method":"GET","path":"/api/sites/1/recommandations?tpriorite=BASSE","status":200,"duration_ms":1,"ip":"::1"}
+[2026-06-25 10:48:30] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/recommandations/1 — 200 — 9ms {"method":"PATCH","path":"/api/sites/1/recommandations/1","status":200,"duration_ms":9,"ip":"::1"}
+[2026-06-25 10:49:28] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations/resume — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations/resume","status":200,"duration_ms":2,"ip":"::1"}
+[2026-06-25 11:05:17] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites/1/contenus","statusCode":400}
+[2026-06-25 11:05:17] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/contenus — 400 — 3ms {"method":"POST","path":"/api/sites/1/contenus","status":400,"duration_ms":3,"ip":"::1"}
+[2026-06-25 11:07:14] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/contenus — 201 — 10ms {"method":"POST","path":"/api/sites/1/contenus","status":201,"duration_ms":10,"ip":"::1"}
+[2026-06-25 11:12:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus","status":200,"duration_ms":2,"ip":"::1"}
+[2026-06-25 11:14:29] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/1 — 200 — 8ms {"method":"PATCH","path":"/api/sites/1/contenus/1","status":200,"duration_ms":8,"ip":"::1"}
+[2026-06-25 11:16:35] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites/1/contenus/1","statusCode":400}
+[2026-06-25 11:16:35] [[33mwarn[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/1 — 400 — 5ms {"method":"PATCH","path":"/api/sites/1/contenus/1","status":400,"duration_ms":5,"ip":"::1"}
+[2026-06-25 11:17:13] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/1/contenus/1 — 200 — 12ms {"method":"DELETE","path":"/api/sites/1/contenus/1","status":200,"duration_ms":12,"ip":"::1"}
+[2026-06-25 11:34:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations/resume — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations/resume","status":200,"duration_ms":3,"ip":"::1"}
+[2026-06-25 11:35:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":4,"ip":"::1"}
+[2026-06-25 15:54:25] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-06-25 15:54:25] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-25 15:54:29] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-25 15:54:29] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-25 15:54:59] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 19ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":19,"ip":"::1"}
+[2026-06-25 15:55:36] [[32minfo[39m] [dgs-seo-api] PUT /api/projets/1 — 200 — 11ms {"method":"PUT","path":"/api/projets/1","status":200,"duration_ms":11,"ip":"::1"}
+[2026-06-25 15:57:57] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Impossible de supprimer un projet contenant des sites. {"path":"/api/projets/1","statusCode":400}
+[2026-06-25 15:57:57] [[33mwarn[39m] [dgs-seo-api] DELETE /api/projets/1 — 400 — 3ms {"method":"DELETE","path":"/api/projets/1","status":400,"duration_ms":3,"ip":"::1"}
+[2026-06-25 16:00:18] [[32minfo[39m] [dgs-seo-api] POST /api/projets/ — 201 — 7ms {"method":"POST","path":"/api/projets/","status":201,"duration_ms":7,"ip":"::1"}
+[2026-06-25 16:00:36] [[32minfo[39m] [dgs-seo-api] DELETE /api/projets/2 — 200 — 10ms {"method":"DELETE","path":"/api/projets/2","status":200,"duration_ms":10,"ip":"::1"}
+[2026-06-26 12:10:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/audits — 200 — 104ms {"method":"GET","path":"/api/sites/1/audits","status":200,"duration_ms":104,"ip":"::1"}
+[2026-06-26 17:55:40] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-06-26 17:55:40] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-06-30 13:33:09] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-06-30 13:33:09] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-06-30 13:36:46] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:46] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 15ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":15,"ip":"::1"}
+[2026-06-30 13:36:46] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:46] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 2ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":2,"ip":"::1"}
+[2026-06-30 13:36:48] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:48] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 3ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":3,"ip":"::1"}
+[2026-06-30 13:36:48] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:48] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 2ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":2,"ip":"::1"}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 4ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":4,"ip":"::1"}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 1ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":1,"ip":"::1"}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 4ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":4,"ip":"::1"}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:49] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 0ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":0,"ip":"::1"}
+[2026-06-30 13:36:50] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:50] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 2ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":2,"ip":"::1"}
+[2026-06-30 13:36:50] [[33mwarn[39m] [dgs-seo-api] [TOKEN_MISSING] Token manquant ou malformé. {"path":"/api/projets","statusCode":401}
+[2026-06-30 13:36:50] [[33mwarn[39m] [dgs-seo-api] GET /api/projets — 401 — 1ms {"method":"GET","path":"/api/projets","status":401,"duration_ms":1,"ip":"::1"}
+[2026-06-30 13:39:28] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-01 10:48:23] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-01 10:48:23] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-01 11:16:10] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-01 11:17:19] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3001 {"env":"development","port":3001}
+[2026-07-01 11:17:19] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-01 11:23:35] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/auth/connexion {"path":"/api/auth/connexion","statusCode":404}
+[2026-07-01 11:23:35] [[33mwarn[39m] [dgs-seo-api] GET /api/auth/connexion — 404 — 14ms {"method":"GET","path":"/api/auth/connexion","status":404,"duration_ms":14,"ip":"::1"}
+[2026-07-01 11:23:36] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /favicon.ico {"path":"/favicon.ico","statusCode":404}
+[2026-07-01 11:23:36] [[33mwarn[39m] [dgs-seo-api] GET /favicon.ico — 404 — 1ms {"method":"GET","path":"/favicon.ico","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-01 11:24:27] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/auth/connexion {"path":"/api/auth/connexion","statusCode":404}
+[2026-07-01 11:24:27] [[33mwarn[39m] [dgs-seo-api] GET /api/auth/connexion — 404 — 3ms {"method":"GET","path":"/api/auth/connexion","status":404,"duration_ms":3,"ip":"::1"}
+[2026-07-01 11:28:28] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/auth/connexion {"path":"/api/auth/connexion","statusCode":404}
+[2026-07-01 11:28:28] [[33mwarn[39m] [dgs-seo-api] GET /api/auth/connexion — 404 — 1ms {"method":"GET","path":"/api/auth/connexion","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-01 11:31:51] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-01 11:31:54] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3001 {"env":"development","port":3001}
+[2026-07-01 11:31:54] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-01 11:32:09] [[33mwarn[39m] [dgs-seo-api] [INVALID_CREDENTIALS] Email ou mot de passe incorrect. {"path":"/api/auth/connexion","statusCode":401}
+[2026-07-01 11:32:09] [[33mwarn[39m] [dgs-seo-api] POST /api/auth/connexion — 401 — 105ms {"method":"POST","path":"/api/auth/connexion","status":401,"duration_ms":105,"ip":"::1"}
+[2026-07-01 11:32:32] [[33mwarn[39m] [dgs-seo-api] [INVALID_CREDENTIALS] Email ou mot de passe incorrect. {"path":"/api/auth/connexion","statusCode":401}
+[2026-07-01 11:32:32] [[33mwarn[39m] [dgs-seo-api] POST /api/auth/connexion — 401 — 61ms {"method":"POST","path":"/api/auth/connexion","status":401,"duration_ms":61,"ip":"::1"}
+[2026-07-01 11:34:33] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-01 11:34:33] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 78ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":78,"ip":"::1"}
+[2026-07-01 11:39:42] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-01 11:39:42] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 75ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":75,"ip":"::1"}
+[2026-07-01 11:41:32] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-01 11:41:32] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 59ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":59,"ip":"::1"}
+[2026-07-01 11:43:10] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-01 11:43:10] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 80ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":80,"ip":"::1"}
+[2026-07-01 11:47:42] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-01 11:47:42] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-07-07 11:51:14] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3001 {"env":"development","port":3001}
+[2026-07-07 11:51:14] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-07 12:09:49] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-07 12:09:52] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-07 12:09:52] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-07 12:14:00] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-07 12:14:02] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-07 12:14:02] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-07 12:14:05] [[32minfo[39m] [dgs-seo-api] Nouvel utilisateur créé {"userId":2,"email":"kyo@dgsafrica.com"}
+[2026-07-07 12:14:05] [[32minfo[39m] [dgs-seo-api] POST /api/auth/inscription — 201 — 121ms {"method":"POST","path":"/api/auth/inscription","status":201,"duration_ms":121,"ip":"::1"}
+[2026-07-07 12:14:44] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":2}
+[2026-07-07 12:14:44] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 65ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":65,"ip":"::1"}
+[2026-07-07 12:14:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 16ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":16,"ip":"::1"}
+[2026-07-07 12:14:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 32ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":32,"ip":"::1"}
+[2026-07-07 12:14:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 200 — 4ms {"method":"GET","path":"/api/sites","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:14:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 12:15:16] [[33mwarn[39m] [dgs-seo-api] [FORBIDDEN_ROLE] Accès réservé aux rôles : ADMIN, ANALYSTE. {"path":"/api/sites/1/audits","statusCode":403}
+[2026-07-07 12:15:16] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/audits — 403 — 3ms {"method":"POST","path":"/api/sites/1/audits","status":403,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:15:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:15:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:15:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783426554826 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783426554826","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:16:01] [[33mwarn[39m] [dgs-seo-api] [FORBIDDEN_ROLE] Accès réservé aux rôles : ADMIN, ANALYSTE. {"path":"/api/sites/1/recommandations/2","statusCode":403}
+[2026-07-07 12:16:01] [[33mwarn[39m] [dgs-seo-api] PATCH /api/sites/1/recommandations/2 — 403 — 2ms {"method":"PATCH","path":"/api/sites/1/recommandations/2","status":403,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:16:05] [[33mwarn[39m] [dgs-seo-api] [FORBIDDEN_ROLE] Accès réservé aux rôles : ADMIN, ANALYSTE. {"path":"/api/sites/1/recommandations/2","statusCode":403}
+[2026-07-07 12:16:05] [[33mwarn[39m] [dgs-seo-api] PATCH /api/sites/1/recommandations/2 — 403 — 1ms {"method":"PATCH","path":"/api/sites/1/recommandations/2","status":403,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:16:25] [[33mwarn[39m] [dgs-seo-api] [FORBIDDEN_ROLE] Accès réservé aux rôles : ADMIN, ANALYSTE. {"path":"/api/sites/1/audits","statusCode":403}
+[2026-07-07 12:16:25] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/audits — 403 — 2ms {"method":"POST","path":"/api/sites/1/audits","status":403,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:16:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:16:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 12:17:42] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-07 12:17:42] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 76ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":76,"ip":"::1"}
+[2026-07-07 12:17:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-07 12:17:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-07 12:17:52] [[32minfo[39m] [dgs-seo-api] [Audit #6] Démarrage du crawl → https://dgsafrica.com {"auditId":6}
+[2026-07-07 12:17:52] [[32minfo[39m] [dgs-seo-api] [Audit #6] Config : max_pages=500, delay=500ms, workers=5 {"auditId":6}
+[2026-07-07 12:17:52] [[32minfo[39m] [dgs-seo-api] [Audit #6] Tentative 1/2 — crawl en cours… {"auditId":6}
+[2026-07-07 12:17:52] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":6,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-07-07 12:17:52] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 27ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":27,"ip":"::1"}
+[2026-07-07 12:17:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/audits?_t=1783426675400 — 200 — 4ms {"method":"GET","path":"/api/sites/1/audits?_t=1783426675400","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:17:57] [[32minfo[39m] [dgs-seo-api] [Audit #6] Crawl OK (tentative 1) : 1 pages, 0 erreur(s), 1203 ms {"auditId":6}
+[2026-07-07 12:17:57] [[32minfo[39m] [dgs-seo-api] [Audit #6] Scores — global: 81, technique: 82, domaine: 80 {"auditId":6}
+[2026-07-07 12:17:57] [[32minfo[39m] [dgs-seo-api] [Audit #6] Audit terminé avec succès. {"auditId":6}
+[2026-07-07 12:17:57] [[32minfo[39m] [dgs-seo-api] [Audit #6] Recommandations : 1 créée(s), 2 dédupliquée(s). {"auditId":6}
+[2026-07-07 12:18:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:18:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:18:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:18:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:18:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 200 — 3ms {"method":"GET","path":"/api/sites/1/mots-cles","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:18:50] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:18:50] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:18:57] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 2ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:18:57] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:19:33] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-07 12:19:33] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 58ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":58,"ip":"::1"}
+[2026-07-07 12:19:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 15ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":15,"ip":"::1"}
+[2026-07-07 12:19:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 12:19:47] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:19:47] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783426802357 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783426802357","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:12] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 2ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783426812442 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783426812442","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:17] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783426817874 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783426817874","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:31] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/recommandations/1 — 200 — 13ms {"method":"PATCH","path":"/api/sites/1/recommandations/1","status":200,"duration_ms":13,"ip":"::1"}
+[2026-07-07 12:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783426831699 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783426831699","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:20:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-07 12:20:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 12:21:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 2ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:21:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 3ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:22:19] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/mots-cles — 201 — 6ms {"method":"POST","path":"/api/sites/1/mots-cles","status":201,"duration_ms":6,"ip":"::1"}
+[2026-07-07 12:22:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 200 — 2ms {"method":"GET","path":"/api/sites/1/mots-cles","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:22:51] [[32minfo[39m] [dgs-seo-api] PUT /api/sites/1/mots-cles/1 — 200 — 10ms {"method":"PUT","path":"/api/sites/1/mots-cles/1","status":200,"duration_ms":10,"ip":"::1"}
+[2026-07-07 12:23:04] [[32minfo[39m] [dgs-seo-api] [Audit #7] Démarrage du crawl → https://dgsafrica.com {"auditId":7}
+[2026-07-07 12:23:04] [[32minfo[39m] [dgs-seo-api] [Audit #7] Config : max_pages=500, delay=500ms, workers=5 {"auditId":7}
+[2026-07-07 12:23:04] [[32minfo[39m] [dgs-seo-api] [Audit #7] Tentative 1/2 — crawl en cours… {"auditId":7}
+[2026-07-07 12:23:04] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":7,"siteId":1,"url":"https://dgsafrica.com"}
+[2026-07-07 12:23:04] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/audits — 202 — 16ms {"method":"POST","path":"/api/sites/1/audits","status":202,"duration_ms":16,"ip":"::1"}
+[2026-07-07 12:23:07] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/audits?_t=1783426987231 — 200 — 2ms {"method":"GET","path":"/api/sites/1/audits?_t=1783426987231","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:23:08] [[32minfo[39m] [dgs-seo-api] [Audit #7] Crawl OK (tentative 1) : 1 pages, 0 erreur(s), 828 ms {"auditId":7}
+[2026-07-07 12:23:08] [[32minfo[39m] [dgs-seo-api] [Audit #7] Scores — global: 81, technique: 82, domaine: 80 {"auditId":7}
+[2026-07-07 12:23:08] [[32minfo[39m] [dgs-seo-api] [Audit #7] Audit terminé avec succès. {"auditId":7}
+[2026-07-07 12:23:08] [[32minfo[39m] [dgs-seo-api] [Audit #7] Recommandations : 2 créée(s), 2 dédupliquée(s). {"auditId":7}
+[2026-07-07 12:23:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427004947 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427004947","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 3ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427017103 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427017103","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 3ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427017350 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427017350","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 4ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:23:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427017574 — 200 — 4ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427017574","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:23:39] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427019547 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427019547","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:23:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:23:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:23:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:23:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 12:24:03] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 7ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":7,"ip":"::1"}
+[2026-07-07 12:24:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:24:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:24:29] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 7ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":7,"ip":"::1"}
+[2026-07-07 12:24:29] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:24:29] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 1ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:25:55] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 2ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:25:55] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 1ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:26:40] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:26:40] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:32:06] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 1ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 12:32:31] [[32minfo[39m] [dgs-seo-api] PUT /api/projets/1 — 200 — 8ms {"method":"PUT","path":"/api/projets/1","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-07 12:33:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427581654 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427581654","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:33:31] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/recommandations/1 — 200 — 8ms {"method":"PATCH","path":"/api/sites/1/recommandations/1","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-07 12:33:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783427611705 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783427611705","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 12:33:47] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 2ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 12:33:47] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 13:17:05] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 13:17:05] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 13:17:11] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 6ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 13:17:11] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 13:25:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 13:25:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 9ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-07 13:50:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 13:50:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:13:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-07 14:13:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 11ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":11,"ip":"::1"}
+[2026-07-07 14:13:17] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 200 — 3ms {"method":"GET","path":"/api/sites/1/mots-cles","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:13:25] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:13:25] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:13:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:13:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:15:50] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:15:50] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:15:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:15:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 14:15:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-07 14:15:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 9ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-07 14:16:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783433761609 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783433761609","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:16:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783433761635 — 200 — 4ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783433761635","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 14:16:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:16:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 14:17:57] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites","statusCode":400}
+[2026-07-07 14:17:57] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 400 — 2ms {"method":"POST","path":"/api/sites","status":400,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:18:03] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites","statusCode":400}
+[2026-07-07 14:18:03] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 400 — 1ms {"method":"POST","path":"/api/sites","status":400,"duration_ms":1,"ip":"::1"}
+[2026-07-07 14:18:18] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-07 14:18:18] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 14ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-07 14:18:46] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-07 14:18:46] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 55ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":55,"ip":"::1"}
+[2026-07-07 14:18:46] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 14:18:46] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 19ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":19,"ip":"::1"}
+[2026-07-07 14:18:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:18:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:19:07] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites","statusCode":400}
+[2026-07-07 14:19:07] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 400 — 1ms {"method":"POST","path":"/api/sites","status":400,"duration_ms":1,"ip":"::1"}
+[2026-07-07 14:19:15] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites","statusCode":400}
+[2026-07-07 14:19:15] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 400 — 2ms {"method":"POST","path":"/api/sites","status":400,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:20:28] [[33mwarn[39m] [dgs-seo-api] [TOKEN_INVALID] Token invalide ou expiré. {"path":"/api/sites","statusCode":401}
+[2026-07-07 14:20:28] [[33mwarn[39m] [dgs-seo-api] POST /api/sites — 401 — 1ms {"method":"POST","path":"/api/sites","status":401,"duration_ms":1,"ip":"::1"}
+[2026-07-07 14:20:40] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-07 14:20:40] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 70ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":70,"ip":"::1"}
+[2026-07-07 14:21:02] [[32minfo[39m] [dgs-seo-api] Site créé {"siteId":2,"url":"https://www.wifi4games.com/"}
+[2026-07-07 14:21:02] [[32minfo[39m] [dgs-seo-api] POST /api/sites — 201 — 10ms {"method":"POST","path":"/api/sites","status":201,"duration_ms":10,"ip":"::1"}
+[2026-07-07 14:21:13] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:21:13] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:21:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 200 — 2ms {"method":"GET","path":"/api/sites","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:21:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:21:23] [[32minfo[39m] [dgs-seo-api] [Audit #8] Démarrage du crawl → https://www.wifi4games.com/ {"auditId":8}
+[2026-07-07 14:21:23] [[32minfo[39m] [dgs-seo-api] [Audit #8] Config : max_pages=500, delay=500ms, workers=5 {"auditId":8}
+[2026-07-07 14:21:23] [[32minfo[39m] [dgs-seo-api] [Audit #8] Tentative 1/2 — crawl en cours… {"auditId":8}
+[2026-07-07 14:21:23] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":8,"siteId":2,"url":"https://www.wifi4games.com/"}
+[2026-07-07 14:21:23] [[32minfo[39m] [dgs-seo-api] POST /api/sites/2/audits — 202 — 19ms {"method":"POST","path":"/api/sites/2/audits","status":202,"duration_ms":19,"ip":"::1"}
+[2026-07-07 14:21:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/audits?_t=1783434086974 — 200 — 2ms {"method":"GET","path":"/api/sites/2/audits?_t=1783434086974","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:21:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:21:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 13ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-07 14:21:50] [[32minfo[39m] [dgs-seo-api] [Audit #9] Démarrage du crawl → https://www.wifi4games.com/ {"auditId":9}
+[2026-07-07 14:21:50] [[32minfo[39m] [dgs-seo-api] [Audit #9] Config : max_pages=500, delay=500ms, workers=5 {"auditId":9}
+[2026-07-07 14:21:50] [[32minfo[39m] [dgs-seo-api] [Audit #9] Tentative 1/2 — crawl en cours… {"auditId":9}
+[2026-07-07 14:21:50] [[32minfo[39m] [dgs-seo-api] Audit lancé {"auditId":9,"siteId":2,"url":"https://www.wifi4games.com/"}
+[2026-07-07 14:21:50] [[32minfo[39m] [dgs-seo-api] POST /api/sites/2/audits — 202 — 15ms {"method":"POST","path":"/api/sites/2/audits","status":202,"duration_ms":15,"ip":"::1"}
+[2026-07-07 14:21:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/audits?_t=1783434113914 — 200 — 1ms {"method":"GET","path":"/api/sites/2/audits?_t=1783434113914","status":200,"duration_ms":1,"ip":"::1"}
+[2026-07-07 14:21:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:21:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 14:22:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/mots-cles — 200 — 2ms {"method":"GET","path":"/api/sites/2/mots-cles","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 2ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/mots-cles — 304 — 2ms {"method":"GET","path":"/api/sites/2/mots-cles","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/recommandations?_t=1783434139535 — 200 — 2ms {"method":"GET","path":"/api/sites/2/recommandations?_t=1783434139535","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/recommandations?_t=1783434140568 — 200 — 2ms {"method":"GET","path":"/api/sites/2/recommandations?_t=1783434140568","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:21] [[32minfo[39m] [dgs-seo-api] POST /api/sites/2/recommandations/generer — 200 — 3ms {"method":"POST","path":"/api/sites/2/recommandations/generer","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:22:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/2/recommandations?_t=1783434141482 — 200 — 3ms {"method":"GET","path":"/api/sites/2/recommandations?_t=1783434141482","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 14:22:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:22:27] [[32minfo[39m] [dgs-seo-api] Site supprimé {"siteId":2}
+[2026-07-07 14:22:27] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/2 — 200 — 16ms {"method":"DELETE","path":"/api/sites/2","status":200,"duration_ms":16,"ip":"::1"}
+[2026-07-07 14:27:42] [[32minfo[39m] [dgs-seo-api] [Audit #8] Tentative 1/2 échouée : 'charmap' codec can't encode characters in position 99-103: character maps to <undefined> {"auditId":8}
+[2026-07-07 14:27:42] [[32minfo[39m] [dgs-seo-api] [Audit #8] Tentative 2/2 — crawl en cours… {"auditId":8}
+[2026-07-07 14:27:56] [[32minfo[39m] [dgs-seo-api] [Audit #9] Tentative 1/2 échouée : 'charmap' codec can't encode characters in position 99-103: character maps to <undefined> {"auditId":9}
+[2026-07-07 14:27:56] [[32minfo[39m] [dgs-seo-api] [Audit #9] Tentative 2/2 — crawl en cours… {"auditId":9}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #8] Tentative 2/2 échouée : Timeout dépassé (10 min) — processus tué. {"auditId":8}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #8] Audit marqué en échec définitif. {"auditId":8}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #9] Tentative 2/2 échouée : Timeout dépassé (10 min) — processus tué. {"auditId":9}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #9] Audit marqué en échec définitif. {"auditId":9}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #8] Erreur DB (echec) : 
+Invalid `prisma.auditResult.update()` invocation in
+C:\Users\Babacar\Documents\dgs-backend\src\services\auditRunner.js:323:34
+
+  320 if (attempt === 2) {
+  321   // Échec définitif après 2 tentatives
+  322   log(auditId, 'Audit marqué en échec définitif.');
+→ 323   await prisma.auditResult.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update. {"auditId":8}
+[2026-07-07 14:49:07] [[32minfo[39m] [dgs-seo-api] [Audit #9] Erreur DB (echec) : 
+Invalid `prisma.auditResult.update()` invocation in
+C:\Users\Babacar\Documents\dgs-backend\src\services\auditRunner.js:323:34
+
+  320 if (attempt === 2) {
+  321   // Échec définitif après 2 tentatives
+  322   log(auditId, 'Audit marqué en échec définitif.');
+→ 323   await prisma.auditResult.update(
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update. {"auditId":9}
+[2026-07-07 14:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 200 — 2ms {"method":"GET","path":"/api/sites","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 14:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 16:15:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 16:15:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 16:16:10] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-07 16:16:10] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 17:41:15] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 5ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 17:41:15] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 17:41:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 17:41:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 9ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-07 17:41:31] [[33mwarn[39m] [dgs-seo-api] [SITE_NOT_FOUND] Site introuvable. {"path":"/api/sites/4/mots-cles","statusCode":404}
+[2026-07-07 17:41:31] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/4/mots-cles — 404 — 2ms {"method":"GET","path":"/api/sites/4/mots-cles","status":404,"duration_ms":2,"ip":"::1"}
+[2026-07-07 17:41:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 2ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 17:42:01] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 4ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-07 17:42:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783446121525 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783446121525","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 17:42:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 17:42:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 14ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-07 17:42:39] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 14ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-07 17:42:39] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 16ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-07 17:42:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 17:42:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 17:42:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783446171314 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783446171314","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:12:24] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 5ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 18:12:24] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 18:12:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 18:12:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:12:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:12:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:23:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 18:23:52] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:23:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:23:53] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:24:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:24:01] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 1ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-07 18:24:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:24:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 18:24:08] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:24:08] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:35:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:35:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:35:33] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 18:35:33] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 18:56:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 18:56:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 18:56:20] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 18:56:20] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:03:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 20:03:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:03:04] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:03:04] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-07 20:03:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-07 20:07:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:07:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 20:07:22] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:07:22] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 20:07:37] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:07:37] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 20:08:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783454923485 — 200 — 1ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783454923485","status":200,"duration_ms":1,"ip":"::1"}
+[2026-07-07 21:55:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 21:55:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 21:55:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-07 21:55:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 21:55:44] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-07 21:55:44] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-07 21:55:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 34ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":34,"ip":"::1"}
+[2026-07-07 21:55:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 13ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-07 22:13:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-07 22:13:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 14ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-07 22:13:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-07 22:13:43] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 17ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":17,"ip":"::1"}
+[2026-07-08 09:24:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 25ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":25,"ip":"::1"}
+[2026-07-08 09:24:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:27:47] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 16ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-08 09:27:47] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:27:49] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:27:49] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:27:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:27:49] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:27:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:27:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:32:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:06] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:32:06] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 5ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 8ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:32:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:32:48] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:48] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:32:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 7ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:32:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:51] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 11ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":11,"ip":"::1"}
+[2026-07-08 09:32:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:32:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:32:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:32:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:32:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:33:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:33:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:33:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:33:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:33:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:33:21] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:33:21] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:33:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 11ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":11,"ip":"::1"}
+[2026-07-08 09:33:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:33:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:33:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:33:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:33:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:35:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:36:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:36:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:36:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:36:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 38ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":38,"ip":"::1"}
+[2026-07-08 09:36:04] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 9ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 09:36:04] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:36:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:36:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:37:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:37:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:37:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 1ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-08 09:37:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:46:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 09:46:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 17ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":17,"ip":"::1"}
+[2026-07-08 09:46:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:46:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-08 09:46:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:46:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:48:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 30ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":30,"ip":"::1"}
+[2026-07-08 09:48:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:48:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:48:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:48:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:48:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:48:48] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites/1/contenus/","statusCode":400}
+[2026-07-08 09:48:48] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 400 — 4ms {"method":"POST","path":"/api/sites/1/contenus/","status":400,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:49:03] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites/1/contenus/","statusCode":400}
+[2026-07-08 09:49:03] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 400 — 2ms {"method":"POST","path":"/api/sites/1/contenus/","status":400,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:51:08] [[33mwarn[39m] [dgs-seo-api] [VALIDATION_ERROR] Données invalides. {"path":"/api/sites/1/contenus/","statusCode":400}
+[2026-07-08 09:51:08] [[33mwarn[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 400 — 2ms {"method":"POST","path":"/api/sites/1/contenus/","status":400,"duration_ms":2,"ip":"::1"}
+[2026-07-08 09:56:35] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-08 09:56:35] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-07-08 09:56:39] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-08 09:56:39] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-08 09:56:50] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 24ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":24,"ip":"::1"}
+[2026-07-08 09:56:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 09:56:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 09:57:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:57:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 201 — 13ms {"method":"POST","path":"/api/sites/1/contenus/","status":201,"duration_ms":13,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 15ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":15,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 19ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":19,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 7ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:57:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 14ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:57:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 09:57:42] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/1/contenus/2 — 200 — 12ms {"method":"DELETE","path":"/api/sites/1/contenus/2","status":200,"duration_ms":12,"ip":"::1"}
+[2026-07-08 09:57:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:06:10] [[32minfo[39m] [dgs-seo-api] Connexion réussie {"userId":1}
+[2026-07-08 10:06:10] [[32minfo[39m] [dgs-seo-api] POST /api/auth/connexion — 200 — 66ms {"method":"POST","path":"/api/auth/connexion","status":200,"duration_ms":66,"ip":"::1"}
+[2026-07-08 10:06:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:06:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:06:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:06:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:06:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 1ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:06:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:06:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 201 — 7ms {"method":"POST","path":"/api/sites/1/contenus/","status":201,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 13ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:06:45] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:06:55] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:10:48] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/3 {"path":"/api/sites/1/contenus/3","statusCode":404}
+[2026-07-08 10:10:48] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/3 — 404 — 2ms {"method":"GET","path":"/api/sites/1/contenus/3","status":404,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:10:48] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/3 {"path":"/api/sites/1/contenus/3","statusCode":404}
+[2026-07-08 10:10:48] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/3 — 404 — 4ms {"method":"GET","path":"/api/sites/1/contenus/3","status":404,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:10:51] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:10:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:10:58] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:11:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:11:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:11:04] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/3 {"path":"/api/sites/1/contenus/3","statusCode":404}
+[2026-07-08 10:11:04] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/3 — 404 — 1ms {"method":"GET","path":"/api/sites/1/contenus/3","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:11:04] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/3 {"path":"/api/sites/1/contenus/3","statusCode":404}
+[2026-07-08 10:11:04] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/3 — 404 — 3ms {"method":"GET","path":"/api/sites/1/contenus/3","status":404,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:11:15] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:11:19] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/1/contenus/3 — 200 — 9ms {"method":"DELETE","path":"/api/sites/1/contenus/3","status":200,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:11:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 5ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 201 — 7ms {"method":"POST","path":"/api/sites/1/contenus/","status":201,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:17:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:17:24] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:17:24] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 1ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:17:24] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:17:24] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 1ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:17:33] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:18:16] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:18:16] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 3ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:18:16] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:18:16] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:26:41] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:26:41] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 0ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":0,"ip":"::1"}
+[2026-07-08 10:27:18] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:27:18] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 1ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:27:31] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-08 10:27:31] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-07-08 10:27:34] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-08 10:27:34] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 12ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 51ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":51,"ip":"::1"}
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:27:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:27:41] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:27:41] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 3ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:27:41] [[33mwarn[39m] [dgs-seo-api] [ROUTE_NOT_FOUND] Route introuvable : GET /api/sites/1/contenus/4 {"path":"/api/sites/1/contenus/4","statusCode":404}
+[2026-07-08 10:27:41] [[33mwarn[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 404 — 1ms {"method":"GET","path":"/api/sites/1/contenus/4","status":404,"duration_ms":1,"ip":"::1"}
+[2026-07-08 10:35:30] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-08 10:35:30] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.
+[2026-07-08 10:35:33] [[32minfo[39m] [dgs-seo-api] Serveur démarré sur http://localhost:3000 {"env":"development","port":3000}
+[2026-07-08 10:35:33] [[32minfo[39m] [dgs-seo-api] [PURGE] Tâche planifiée — exécution chaque jour à 02:00 UTC
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 9ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 12ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 46ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":46,"ip":"::1"}
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:35:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:35:46] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 200 — 5ms {"method":"GET","path":"/api/sites/1/contenus/4","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:35:46] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 8ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:35:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:35:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:35:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 7ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 13ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-08 10:36:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 13ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-08 10:36:11] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:11] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 17ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":17,"ip":"::1"}
+[2026-07-08 10:36:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 16ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":16,"ip":"::1"}
+[2026-07-08 10:36:19] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:36:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:36:24] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:36:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:30] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:30] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/4 — 200 — 11ms {"method":"PATCH","path":"/api/sites/1/contenus/4","status":200,"duration_ms":11,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 8ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:36:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:36:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:36:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:36:40] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:40] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/4 — 200 — 7ms {"method":"PATCH","path":"/api/sites/1/contenus/4","status":200,"duration_ms":7,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 16ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:36:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:37:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:37:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:37:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 12ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 10:37:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:37:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:37:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:37:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:37:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:37:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus/4","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:37:22] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/4 — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/4","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:37:29] [[33mwarn[39m] [dgs-seo-api] [INVALID_STATUS_TRANSITION] Transition de statut interdite : PUBLIE → IDEE. {"path":"/api/sites/1/contenus/4","statusCode":400}
+[2026-07-08 10:37:29] [[33mwarn[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/4 — 400 — 2ms {"method":"PATCH","path":"/api/sites/1/contenus/4","status":400,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/4 — 200 — 9ms {"method":"PATCH","path":"/api/sites/1/contenus/4","status":200,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 8ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 12ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:37:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:37:38] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/1/contenus/4 — 200 — 9ms {"method":"DELETE","path":"/api/sites/1/contenus/4","status":200,"duration_ms":9,"ip":"::1"}
+[2026-07-08 10:37:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:37:40] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 200 — 3ms {"method":"GET","path":"/api/sites/1/dashboard","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:37:40] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:38:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 10:38:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:38:15] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:38:15] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:38:18] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:38:18] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 10:38:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:38:18] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 10:38:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 10ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 10:38:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 12ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 10:52:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 10:52:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 15ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":15,"ip":"::1"}
+[2026-07-08 10:53:30] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 10:53:30] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 13ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-08 11:36:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 11:36:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 11:40:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 11:40:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:20] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 11:40:26] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 14ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-08 11:40:26] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 11:40:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 11:40:52] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 23ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":23,"ip":"::1"}
+[2026-07-08 11:40:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 11:40:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 11:41:05] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783510865745 — 200 — 3ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783510865745","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:41:50] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:41:50] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 14:41:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:41:56] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:42:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:10] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:10] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:42:10] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:11] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 14:42:11] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 14:42:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:42:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:12] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:42:12] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 5ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 14:42:28] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/mots-cles — 304 — 3ms {"method":"GET","path":"/api/sites/1/mots-cles","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:42:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-08 14:42:37] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 1ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":1,"ip":"::1"}
+[2026-07-08 14:42:47] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/recommandations/generer — 200 — 4ms {"method":"POST","path":"/api/sites/1/recommandations/generer","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:42:47] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/recommandations?_t=1783521767084 — 200 — 2ms {"method":"GET","path":"/api/sites/1/recommandations?_t=1783521767084","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:42:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 28ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":28,"ip":"::1"}
+[2026-07-08 14:42:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 11ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":11,"ip":"::1"}
+[2026-07-08 14:43:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:43:00] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:43:00] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:43:00] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:43:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 8ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 14:43:01] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 14:43:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:43:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:43:07] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:43:07] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:43:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:43:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 14:43:23] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 14:43:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 10ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 14:43:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:44:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:44:27] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 14:44:27] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:44:27] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:44:47] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:44:47] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 6ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 14:45:35] [[32minfo[39m] [dgs-seo-api] POST /api/projets — 201 — 14ms {"method":"POST","path":"/api/projets","status":201,"duration_ms":14,"ip":"::1"}
+[2026-07-08 14:45:35] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:45:35] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:45:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:45:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 14:45:42] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 14:45:42] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:45:59] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:45:59] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 2ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 14:46:06] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 11ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":11,"ip":"::1"}
+[2026-07-08 14:46:06] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 4ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:19:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:19:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:19:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:19:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:19:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:19:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:19:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:19:41] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:19:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 15ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":15,"ip":"::1"}
+[2026-07-08 15:19:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 10ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 15:20:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:20:14] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:20:17] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:20:17] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 15:20:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:20:36] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 15:20:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:20:42] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:20:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:20:54] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 5ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:21:02] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:21:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 21ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":21,"ip":"::1"}
+[2026-07-08 15:21:13] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 24ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":24,"ip":"::1"}
+[2026-07-08 15:21:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:21:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:22:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:22:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] POST /api/sites/1/contenus/ — 201 — 9ms {"method":"POST","path":"/api/sites/1/contenus/","status":201,"duration_ms":9,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:22:25] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 15:22:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/5 — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus/5","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:22:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/5 — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/5","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:22:31] [[32minfo[39m] [dgs-seo-api] PATCH /api/sites/1/contenus/5 — 200 — 6ms {"method":"PATCH","path":"/api/sites/1/contenus/5","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":6,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":8,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 15:22:32] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 15:22:35] [[32minfo[39m] [dgs-seo-api] DELETE /api/sites/1/contenus/5 — 200 — 9ms {"method":"DELETE","path":"/api/sites/1/contenus/5","status":200,"duration_ms":9,"ip":"::1"}
+[2026-07-08 15:22:35] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 200 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":200,"duration_ms":2,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 200 — 20ms {"method":"GET","path":"/api/sites/1/contenus/","status":200,"duration_ms":20,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 15ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":15,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 7ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 13ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":13,"ip":"::1"}
+[2026-07-08 16:29:08] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 16:58:59] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:08:29] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 12ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 17:23:31] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 10ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 17ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":17,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 9ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":9,"ip":"::1"}
+[2026-07-08 20:42:57] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 14ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 8ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 26ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":26,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 26ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":26,"ip":"::1"}
+[2026-07-08 22:05:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 14ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 12ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 27ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":27,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 2ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 8ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":8,"ip":"::1"}
+[2026-07-08 22:48:53] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 5ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 16ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 7ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-08 22:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 10ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 16ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 25ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":25,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 6ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 23ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":23,"ip":"::1"}
+[2026-07-09 08:49:09] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 19ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":19,"ip":"::1"}
+[2026-07-09 08:49:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 3ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:16] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 2ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":2,"ip":"::1"}
+[2026-07-09 08:49:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 16ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":16,"ip":"::1"}
+[2026-07-09 08:49:21] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 5ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":5,"ip":"::1"}
+[2026-07-09 08:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 12ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":12,"ip":"::1"}
+[2026-07-09 08:49:26] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 08:49:28] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:28] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 08:49:31] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:31] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 3ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:49:38] [[32minfo[39m] [dgs-seo-api] DELETE /api/projets/5 — 200 — 23ms {"method":"DELETE","path":"/api/projets/5","status":200,"duration_ms":23,"ip":"::1"}
+[2026-07-09 08:52:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 7ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":7,"ip":"::1"}
+[2026-07-09 08:52:34] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 20ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":20,"ip":"::1"}
+[2026-07-09 08:52:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 08:52:38] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 08:52:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/calendrier — 304 — 4ms {"method":"GET","path":"/api/sites/1/contenus/calendrier","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 08:52:41] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/contenus/ — 304 — 6ms {"method":"GET","path":"/api/sites/1/contenus/","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-09 08:52:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 19ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":19,"ip":"::1"}
+[2026-07-09 08:52:44] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 14ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":14,"ip":"::1"}
+[2026-07-09 09:39:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 3ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":3,"ip":"::1"}
+[2026-07-09 09:39:03] [[32minfo[39m] [dgs-seo-api] GET /api/sites — 304 — 4ms {"method":"GET","path":"/api/sites","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 09:39:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 200 — 3ms {"method":"GET","path":"/api/projets","status":200,"duration_ms":3,"ip":"::1"}
+[2026-07-09 09:39:03] [[32minfo[39m] [dgs-seo-api] GET /api/projets — 304 — 4ms {"method":"GET","path":"/api/projets","status":304,"duration_ms":4,"ip":"::1"}
+[2026-07-09 09:39:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 6ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":6,"ip":"::1"}
+[2026-07-09 09:39:04] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 10ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":10,"ip":"::1"}
+[2026-07-09 10:16:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 73ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":73,"ip":"::1"}
+[2026-07-09 10:16:12] [[32minfo[39m] [dgs-seo-api] GET /api/sites/1/dashboard — 304 — 161ms {"method":"GET","path":"/api/sites/1/dashboard","status":304,"duration_ms":161,"ip":"::1"}
+[2026-07-09 10:19:58] [[32minfo[39m] [dgs-seo-api] Signal SIGINT reçu — arrêt gracieux…
+[2026-07-09 10:19:58] [[32minfo[39m] [dgs-seo-api] Serveur arrêté.

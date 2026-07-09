@@ -27,7 +27,10 @@ const app = express();
 
 // ── Sécurité ──────────────────────────────────────────────────────────────────
 app.use(helmet());
-app.use(cors({ origin: config.cors.origin, credentials: true }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:5173'],
+  credentials: true,
+}));
 app.set('trust proxy', 1);
 
 // ── Body parsing ──────────────────────────────────────────────────────────────

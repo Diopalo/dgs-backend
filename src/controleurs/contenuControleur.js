@@ -140,4 +140,37 @@ const getCalendrier = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-module.exports = { listContenus, createContenu, updateContenu, deleteContenu, getCalendrier };
+const getContenuById = async (req, res) => {
+  try {
+    const { siteId, id } = req.params;
+
+    const contenu = await prisma.contenuEditorial.findFirst({
+      where: {
+        id: Number(id),
+        siteId: Number(siteId)
+      }
+    });
+
+    if (!contenu) {
+      return res.status(404).json({
+        success: false,
+        message: "Contenu introuvable."
+      });
+    }
+
+    res.json({
+      success: true,
+      data: contenu
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Erreur serveur."
+    });
+  }
+};
+
+module.exports = { listContenus, createContenu, updateContenu, deleteContenu, getCalendrier, getContenuById };

@@ -6,7 +6,7 @@ const auth     = require('../middlewares/auth');
 const roles    = require('../middlewares/roles');
 const validate = require('../middlewares/validate');
 const { createContenu: createSchema, updateContenu: updateSchema } = require('../schemas/contenuSchemas');
-const { listContenus, createContenu, updateContenu, deleteContenu, getCalendrier } = require('../controleurs/contenuControleur');
+const { listContenus, createContenu, updateContenu, deleteContenu, getCalendrier, getContenuById } = require('../controleurs/contenuControleur');
 
 /**
  * @swagger
@@ -52,5 +52,7 @@ router.get( '/:siteId/contenus',       auth, listContenus);
 router.post('/:siteId/contenus',       auth, validate(createSchema), createContenu);
 router.patch('/:siteId/contenus/:id',  auth, validate(updateSchema), updateContenu);
 router.delete('/:siteId/contenus/:id', auth, deleteContenu);
+router.get('/:siteId/contenus/:id', auth, getContenuById);
+router.get("/calendrier", getCalendrier);
 
 module.exports = router;
